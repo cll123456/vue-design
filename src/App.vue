@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, reactive, Ref, ref } from 'vue';
 import SketchRuler from './components/sketchRuler/index.vue'
+import Pedestal from './components/pedestal/index.vue'
 
 const screensRef: Ref<HTMLDivElement | null> = ref(null)
 const containerRef: Ref<HTMLDivElement | null> = ref(null)
@@ -73,29 +74,29 @@ const handleWheel = (e: WheelEvent) => {
 }
 
 
-onMounted(() => {
-  // 滚动居中
-  screensRef.value!.scrollLeft =
-    containerRef.value!.getBoundingClientRect().width / 2 - 400;
-  //  当按下ctrl + 0的时候，视图需要恢复原状
-  window.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.key === '0') {
-      state.scale = 1;
-      nextTick(() => {
-        handleScroll()
-      })
-    }
-  }, { passive: true });
+// onMounted(() => {
+//   // 滚动居中
+//   screensRef.value!.scrollLeft =
+//     containerRef.value!.getBoundingClientRect().width / 2 - 400;
+//   //  当按下ctrl + 0的时候，视图需要恢复原状
+//   window.addEventListener('keydown', (e: KeyboardEvent) => {
+//     if (e.ctrlKey && e.key === '0') {
+//       state.scale = 1;
+//       nextTick(() => {
+//         handleScroll()
+//       })
+//     }
+//   }, { passive: true });
 
-  //  禁用浏览器的默认放大缩小事件
-  window.addEventListener('wheel', (e) => {
-    if (e.ctrlKey) {
-      // 取消浏览器默认的放大缩小网页行为
-      e.preventDefault()
-    }
-  }, { passive: false })
+//   //  禁用浏览器的默认放大缩小事件
+//   window.addEventListener('wheel', (e) => {
+//     if (e.ctrlKey) {
+//       // 取消浏览器默认的放大缩小网页行为
+//       e.preventDefault()
+//     }
+//   }, { passive: false })
 
-})
+// })
 
 
 
@@ -104,7 +105,8 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <sketch-ruler
+    <pedestal></pedestal>
+    <!-- <sketch-ruler
       :thick="state.thick"
       :scale="state.scale"
       :width="1380"
@@ -121,7 +123,7 @@ onMounted(() => {
       <div ref="containerRef" class="screen-container">
         <div id="canvas" :style="canvasStyle" />
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 

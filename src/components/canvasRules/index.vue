@@ -161,6 +161,7 @@ const handle = (e: MouseEvent, key: string) => {
       break
   }
 }
+
 </script>
 <template>
   <canvas

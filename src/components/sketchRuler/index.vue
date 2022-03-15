@@ -97,17 +97,6 @@ const paletteCpu = computed(() => {
       lineColor: '#EB5648',
       borderColor: '#DADADC',
       cornerActiveColor: 'rgb(235, 86, 72, 0.6)',
-      menu: {
-        bgColor: '#fff',
-        dividerColor: '#DBDBDB',
-        listItem: {
-          textColor: '#415058',
-          hoverTextColor: '#298DF8',
-          disabledTextColor: 'rgba(65, 80, 88, 0.4)',
-          bgColor: '#fff',
-          hoverBgColor: '#F2F2F2'
-        }
-      }
     },
     props.palette || {}
   )
