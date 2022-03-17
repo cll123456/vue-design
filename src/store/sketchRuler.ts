@@ -49,11 +49,11 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
       /**
        * 尺子的宽度
        */
-      width: 1380,
+      width: 1440,
       /**
        * 尺子的高度
        */
-      height: 780,
+      height: 1024,
       /**
        * 尺子阴影的配置
        *  x: 0, x轴起始位置

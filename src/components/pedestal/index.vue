@@ -2,6 +2,7 @@
 import { computed, nextTick, onMounted, reactive, Ref, ref } from 'vue';
 import SketchRuler from './../sketchRuler/index.vue';
 import { useSketchRulerStore } from './../../store/sketchRuler';
+import BgArea from './BgArea.vue';
 
 // const props = defineProps<{
 //   /**
@@ -75,9 +76,9 @@ const containerRef: Ref<HTMLDivElement | null> = ref(null)
  */
 const canvasStyle = computed(() => {
   return {
-    width: sketchRulerStore.width,
-    height: sketchRulerStore.height,
-    transform: `scale(${sketchRulerStore.scale})`
+    width: sketchRulerStore.width * sketchRulerStore.scale + 'px',
+    height: sketchRulerStore.height * sketchRulerStore.scale + 'px',
+    // transform: `scale(${sketchRulerStore.scale})`
   }
 })
 
@@ -86,7 +87,7 @@ const canvasStyle = computed(() => {
 const handleScroll = () => {
   const screensRect = document.querySelector('#screens')!.getBoundingClientRect()
   const canvasRect = document
-    .querySelector('#canvas')!
+    .querySelector('#myCanvas')!
     .getBoundingClientRect();
 
   // 标尺开始的刻度
@@ -144,6 +145,8 @@ onMounted(() => {
   }, { passive: false })
 
 })
+
+
 </script>
 <template>
   <div class="wrapper">
@@ -162,7 +165,11 @@ onMounted(() => {
     ></sketch-ruler>
     <div id="screens" class="screens" ref="screensRef" @wheel="handleWheel" @scroll="handleScroll">
       <div ref="containerRef" class="screen-container">
-        <div id="canvas" :style="canvasStyle" />
+        <div id="myCanvas" class="myCanvas" :style="canvasStyle">
+          <div :style="{ transform: `scale(${sketchRulerStore.scale})`, }">23424324324324</div>
+        </div>
+        <!-- 下拉增加编辑器的高度 -->
+        <bg-area></bg-area>
       </div>
     </div>
   </div>
@@ -188,16 +195,15 @@ onMounted(() => {
   position: absolute;
   width: 5000px;
   height: 3000px;
-}
-
-#canvas {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  width: 1440px;
-  height: 1024px;
-  margin-left: -80px;
-  background: lightblue;
-  transform-origin: 50% 0;
+  .myCanvas {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    // width: 1440px;
+    // height: 1024px;
+    margin-left: -80px;
+    background: lightblue;
+    transform-origin: 50% 0;
+  }
 }
 </style>
