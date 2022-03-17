@@ -166,7 +166,16 @@ onMounted(() => {
     <div id="screens" class="screens" ref="screensRef" @wheel="handleWheel" @scroll="handleScroll">
       <div ref="containerRef" class="screen-container">
         <div id="myCanvas" class="myCanvas" :style="canvasStyle">
-          <div :style="{ transform: `scale(${sketchRulerStore.scale})`, }">23424324324324</div>
+          <div
+            class="myCanvas--container"
+            :style="{ transform: `scale(${sketchRulerStore.scale})` }"
+          >
+            <div>
+              23424324324324
+              <div>sd 大多数地方</div>
+            </div>23424324324324
+            <p>234324dfs得瑟得瑟</p>
+          </div>
         </div>
         <!-- 下拉增加编辑器的高度 -->
         <bg-area></bg-area>
@@ -204,6 +213,13 @@ onMounted(() => {
     margin-left: -80px;
     background: lightblue;
     transform-origin: 50% 0;
+
+    .myCanvas--container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-origin: left top;
+    }
   }
 }
 </style>
