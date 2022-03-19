@@ -18,6 +18,10 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
        */
       scale: 1,
       /**
+       * 初始的放大倍数，用于ctrl + 0 回归到初始化的页面
+       */
+      initScale: 1,
+      /**
        * 比列
        */
       ratio: 1,
@@ -64,8 +68,8 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
       shadow: {
         x: 0,
         y: 0,
-        width: 600,
-        height: 320
+        width: 0,
+        height: 0
       },
       /**
        * 指示性的配置
@@ -73,8 +77,8 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
        * v: []  x轴的线
        */
       lines: {
-        h: [433, 588],
-        v: [33, 143]
+        h: [0],
+        v: [0]
       },
       /**
        * 自定义显示图片的样式
