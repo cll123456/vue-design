@@ -5,6 +5,7 @@ import { useSketchRulerStore } from './../../store/sketchRuler';
 import BgArea from './BgArea.vue';
 import { usePedestalStore } from './../../store/pedestal'
 import GridBg from './GridBg.vue';
+import FlexBg from './FlexBg.vue';
 
 const pedestalStore = usePedestalStore();
 
@@ -257,11 +258,14 @@ onMounted(() => {
               position: 'absolute'
             }"
           >
+            <!-- 网格背景 -->
+            <grid-bg></grid-bg>
+            <!-- flex背景 -->
+            <flex-bg></flex-bg>
             <div
               class="myCanvas--container"
               :style="{ transform: `scale(${sketchRulerStore.scale})` }"
             >
-              <grid-bg></grid-bg>
               <div>
                 23424324324324
                 <div>sd 大多数地方</div>

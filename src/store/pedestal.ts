@@ -34,9 +34,9 @@ export const usePedestalStore = defineStore('pedestal', {
         /**
          * 是否显示栅格的列 默认false
          */
-        isUserFlexColumn: false,
+        isUserFlexColumn: true,
         /**
-         * 默认栅格列的数量
+         * 默认栅格列的数量 默认3 
          */
         flexColumnSize: 3,
         /**
@@ -46,7 +46,7 @@ export const usePedestalStore = defineStore('pedestal', {
         /**
        * 是否显示栅格的行 默认false
        */
-        isUserFlexRow: false,
+        isUserFlexRow: true,
         /**
          * 栅格行的数量
          */
