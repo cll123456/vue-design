@@ -14,11 +14,11 @@ export const usePedestalStore = defineStore('pedestal', {
       /**
        * 编辑器区域的背景颜色
        */
-      editorBgColor: '#ccc',
+      editorBgColor: 'F5F5F5',
       /**
        * 基座的背景颜色
        */
-      pedestalBgColor: '#abcdef',
+      pedestalBgColor: '#ffffff',
       /**
        * 编辑器区域背景设置
        */
@@ -26,7 +26,7 @@ export const usePedestalStore = defineStore('pedestal', {
         /**
          * 是否使用网格作为背景，默认false
          */
-        isUserGrid: false,
+        isUserGrid: true,
         /**
          * 网格的大小，默认是10
          */

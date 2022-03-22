@@ -4,6 +4,7 @@ import SketchRuler from './../sketchRuler/index.vue';
 import { useSketchRulerStore } from './../../store/sketchRuler';
 import BgArea from './BgArea.vue';
 import { usePedestalStore } from './../../store/pedestal'
+import GridBg from './GridBg.vue';
 
 const pedestalStore = usePedestalStore();
 
@@ -250,14 +251,23 @@ onMounted(() => {
       <div ref="containerRef" class="screen-container">
         <div id="myCanvas" class="myCanvas" :style="canvasStyle">
           <div
-            class="myCanvas--container"
-            :style="{ transform: `scale(${sketchRulerStore.scale})` }"
+            :style="{
+              width: pagePedestalStore.editorWidth + 'px',
+              height: pagePedestalStore.editorHeight + 'px',
+              position: 'absolute'
+            }"
           >
-            <div>
-              23424324324324
-              <div>sd 大多数地方</div>
-            </div>23424324324324
-            <p>234324dfs得瑟得瑟</p>
+            <div
+              class="myCanvas--container"
+              :style="{ transform: `scale(${sketchRulerStore.scale})` }"
+            >
+              <grid-bg></grid-bg>
+              <div>
+                23424324324324
+                <div>sd 大多数地方</div>
+              </div>ewewe
+              <p>234324dfs得瑟得瑟</p>
+            </div>
           </div>
         </div>
         <!-- 下拉增加编辑器的高度 -->
