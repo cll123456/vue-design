@@ -16,28 +16,4 @@ import Pedestal from './components/pedestal/index.vue'
   background-color: #f5f5f5;
   border: 1px solid #dadadc;
 }
-
-.screens {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-
-.screen-container {
-  position: absolute;
-  width: 5000px;
-  height: 3000px;
-}
-
-#canvas {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  width: 1440px;
-  height: 1024px;
-  margin-left: -80px;
-  background: lightblue;
-  transform-origin: 50% 0;
-}
 </style>

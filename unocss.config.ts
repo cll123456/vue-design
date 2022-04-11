@@ -46,13 +46,13 @@ export default defineConfig({
     /**这里的颜色可以自己定义，然后在代码中使用windi.css的预设，主要的颜色值需要与main.css中的一致 */
     colors: {
       // 主要的颜色值
-      success: '#00c48f',
-      danger: '#f44336',
-      primary: '#3a7afe',
-      info: '#00afef',
-      warning: '#ff9f00',
+      success: '#67C23A',
+      danger: '#F56C6C',
+      primary: '#409EFF',
+      info: '#909399',
+      warning: '#E6A23C',
       disabled: '#e0e0e0',
-      text: '#000',
+      text: '#303133',
       textDisabled: '#aaa',
       light: '#fff',
       dark: `#272727`,

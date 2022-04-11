@@ -207,6 +207,29 @@ const initEditorRadio = () => {
     })
   }
 }
+/**
+ * 视图恢复原状
+ */
+const keydownRecoveryView = (e: KeyboardEvent) => {
+  if (e.ctrlKey && e.key === '0') {
+    sketchRulerStore.$patch({
+      scale: sketchRulerStore.initScale,
+    })
+    nextTick(() => {
+      handleScroll()
+    })
+  }
+}
+/**
+ * 禁止默认的滚动事件
+ */
+const forbitWheel = (e: WheelEvent) => {
+  if (e.ctrlKey) {
+    // 取消浏览器默认的放大缩小网页行为
+    e.preventDefault()
+    e.stopPropagation()
+  }
+}
 
 onMounted(() => {
   // 滚动到距离左边200的位置，方便放其他的菜单
@@ -216,36 +239,20 @@ onMounted(() => {
   initEditorRadio()
 
   //  当按下ctrl + 0的时候，视图需要恢复原状
-  window.addEventListener(
-    'keydown',
-    (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === '0') {
-        sketchRulerStore.$patch({
-          scale: sketchRulerStore.initScale,
-        })
-        nextTick(() => {
-          handleScroll()
-        })
-      }
-    },
-    { passive: false },
-  )
+  window.addEventListener('keydown', keydownRecoveryView, { passive: false })
 
   //  禁用浏览器的默认放大缩小事件
-  window.addEventListener(
-    'wheel',
-    (e) => {
-      if (e.ctrlKey) {
-        // 取消浏览器默认的放大缩小网页行为
-        e.preventDefault()
-      }
-    },
-    { passive: false },
-  )
+  window.addEventListener('wheel', forbitWheel, { passive: false })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', keydownRecoveryView)
+  window.removeEventListener('wheel', forbitWheel)
 })
 </script>
 <template>
   <div class="wrapper">
+    <!-- 尺子 -->
     <sketch-ruler
       :thick="pageSketchRulerStore.thick"
       :scale="pageSketchRulerStore.scale"
@@ -259,6 +266,7 @@ onMounted(() => {
       :lines="pageSketchRulerStore.lines"
       :ratio="pageSketchRulerStore.ratio"
     ></sketch-ruler>
+    <!-- 容器 -->
     <div
       id="screens"
       ref="screensRef"
