@@ -7,16 +7,21 @@
   },
   "extends": [
     "plugin:vue/vue3-recommended",
-    "eslint:recommended",
-    "@vue/typescript/recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier",
-    "prettier/vue"
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 2021
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2022,
+    "sourceType": "module"
   },
+  "parser": "vue-eslint-parser",
   "plugins": [],
   "rules": {
-    "vue/no-restricted-syntax": ["error", "VAttribute[directive=true][key.name.name=show]"]
+    "vue/no-restricted-syntax": [
+      "error",
+      "VAttribute[directive=true][key.name.name=show]"
+    ]
   }
 }
