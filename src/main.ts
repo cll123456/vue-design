@@ -1,13 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import ElementPlus from 'element-plus';
+import ElementPlus from 'element-plus'
 import { createPinia } from 'pinia'
-import 'element-plus/theme-chalk/src/message.scss';
+import 'element-plus/theme-chalk/src/message.scss'
 
-
-
-const app = createApp(App);
+const app = createApp(App)
 app.use(createPinia())
-app.use(ElementPlus);
-app.mount('#app');
-
+app.use(ElementPlus)
+app.mount('#app')

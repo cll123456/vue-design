@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import Pedestal from './components/pedestal/index.vue'
-
-
-
 </script>
 
 <template>
   <div class="wrapper">
-    <pedestal :editor-height="1024" :editor-width="1440"></pedestal>
+    <pedestal :editor-height="1024" :editor-width="1440">2133</pedestal>
   </div>
 </template>
 

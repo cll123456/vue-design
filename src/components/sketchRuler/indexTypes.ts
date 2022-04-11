@@ -1,6 +1,3 @@
-import { ExtractPropTypes, PropType } from "vue"
-import { IPaletteObj } from "../canvasRules/canvasRulesType"
-
 /**
  * 正文区域
  */

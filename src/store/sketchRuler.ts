@@ -6,8 +6,8 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
   state: () => {
     return {
       /**
-        * 显示指示线的图标
-        */
+       * 显示指示线的图标
+       */
       eyeIcon: eye64,
       /**
        * 关闭指示线的图标
@@ -40,7 +40,7 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
         shadowColor: '#E8E8E8', // ruler shadow color
         lineColor: '#EB5648',
         borderColor: '#DADADC',
-        cornerActiveColor: 'rgb(235, 86, 72, 0.6)'
+        cornerActiveColor: 'rgb(235, 86, 72, 0.6)',
       },
       /**
        * 距离屏幕左侧的实际距离
@@ -69,7 +69,7 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
         x: 0,
         y: 0,
         width: 0,
-        height: 0
+        height: 0,
       },
       /**
        * 指示性的配置
@@ -78,7 +78,7 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
        */
       lines: {
         h: [0],
-        v: [0]
+        v: [0],
       },
       /**
        * 自定义显示图片的样式
@@ -87,7 +87,7 @@ export const useSketchRulerStore = defineStore('sketchRuler', {
       /**
        * 是否显示所有的线
        */
-      isShowReferLine: true
+      isShowReferLine: true,
     }
-  }
+  },
 })

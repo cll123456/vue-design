@@ -1,48 +1,48 @@
-<script lang='ts' setup>
-import { onMounted, ref, watch, } from 'vue'
-import { IPaletteObj } from './canvasRulesType';
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
+import { IPaletteObj } from './canvasRulesType'
 import { drawCavaseRuler } from './utils'
 const props = defineProps<{
   /**
    * 是否显示线
    */
-  showIndicator: boolean,
+  showIndicator: boolean
   /**
    * 当前鼠标的位置
    */
-  valueNum: number,
+  valueNum: number
   /**
    * 放大
    */
-  scale: number,
+  scale: number
   /**
    * 比例
    */
-  ratio: number,
+  ratio: number
   /**
    * 尺子的样式
    */
-  palette: IPaletteObj,
+  palette: IPaletteObj
   /**
    * 是否垂直
    */
-  vertical: boolean,
+  vertical: boolean
   /**
    * 尺子的开始刻度值（默认0）
    */
-  start: number,
+  start: number
   /**
    * 尺子的宽度
    */
-  width: number,
+  width: number
   /**
    * 尺子的高度
    */
-  height: number,
+  height: number
   /**
    * 从刻度尺的多少开始取
    */
-  selectStart: number,
+  selectStart: number
   /**
    * 选中刻度值的长度
    */
@@ -53,24 +53,24 @@ const emits = defineEmits<{
   /**
    * 添加线
    */
-  (event: 'onAddLine', lineNum: number): void,
+  (event: 'onAddLine', lineNum: number): void
   /**
    * 是否显示线
    */
-  (event: 'update:showIndicator', showIndicator: boolean): void,
+  (event: 'update:showIndicator', showIndicator: boolean): void
   /**
    * 更新鼠标位置
    */
-  (event: 'update:valueNum', valueNum: number): void,
+  (event: 'update:valueNum', valueNum: number): void
 }>()
 // 当前的状态
 const state = ref({
-  canvasContext: null as CanvasRenderingContext2D | null
+  canvasContext: null as CanvasRenderingContext2D | null,
 })
 // 比列,默认是1
 let ratio = 1
 // canvasRef
-const canvasRef = ref<HTMLCanvasElement | null>(null);
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 onMounted(() => {
   ratio = props.ratio || window.devicePixelRatio || 1
@@ -82,11 +82,12 @@ onMounted(() => {
  * 初始化canvas
  */
 const initCanvasRef = () => {
-  state.value.canvasContext = canvasRef.value && canvasRef.value.getContext('2d')
+  state.value.canvasContext =
+    canvasRef.value && canvasRef.value.getContext('2d')
 }
 /**
- * 
- * @param ratio 
+ *
+ * @param ratio
  */
 const updateCanvasContext = (ratio: number) => {
   if (canvasRef.value) {
@@ -114,7 +115,7 @@ const drawRuler = (ratio: number) => {
     width: props.width!,
     height: props.height!,
     palette: props.palette!,
-    ratio: ratio
+    ratio: ratio,
   }
 
   if (state.value.canvasContext) {
@@ -124,14 +125,14 @@ const drawRuler = (ratio: number) => {
       props.selectStart!,
       props.selectLength!,
       options,
-      !props.vertical
+      !props.vertical,
     )
   }
 }
 // 监听开始位置的变化，需要重写绘画尺子
 watch(
   () => props.start,
-  () => drawRuler(ratio)
+  () => drawRuler(ratio),
 )
 
 // 监听高度和宽度变化，从新绘画
@@ -161,7 +162,6 @@ const handle = (e: MouseEvent, key: string) => {
       break
   }
 }
-
 </script>
 <template>
   <canvas
@@ -174,5 +174,4 @@ const handle = (e: MouseEvent, key: string) => {
   />
 </template>
 
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>

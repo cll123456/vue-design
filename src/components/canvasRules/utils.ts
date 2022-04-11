@@ -1,4 +1,4 @@
-import { IPaletteObj } from "./canvasRulesType"
+import { IPaletteObj } from './canvasRulesType'
 
 // 标尺中每小格代表的宽度(根据scale的不同实时变化)
 const getGridSize = (scale: number) => {
@@ -17,12 +17,17 @@ export const drawCavaseRuler = (
   start: number,
   selectStart: number,
   selectLength: number,
-  options: { scale: number; width: number; height: number; ratio: number; palette: IPaletteObj },
-  h?: boolean //横向为true,纵向缺省
+  options: {
+    scale: number
+    width: number
+    height: number
+    ratio: number
+    palette: IPaletteObj
+  },
+  h?: boolean, //横向为true,纵向缺省
 ) => {
   const { scale, width, height, ratio, palette } = options
-  const { bgColor, fontColor, shadowColor, longfgColor, shortfgColor } =
-    palette
+  const { bgColor, fontColor, shadowColor, longfgColor, shortfgColor } = palette
 
   // 缩放ctx, 以简化计算
   ctx.scale(ratio, ratio)

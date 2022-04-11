@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 export const usePedestalStore = defineStore('pedestal', {
   // other options...
   state: () => {
@@ -34,19 +34,19 @@ export const usePedestalStore = defineStore('pedestal', {
         /**
          * 是否显示栅格的列 默认false
          */
-        isUserFlexColumn: true,
+        isUserFlexColumn: false,
         /**
-         * 默认栅格列的数量 默认3 
+         * 默认栅格列的数量 默认3
          */
         flexColumnSize: 3,
         /**
-         * 默认栅格列的间隔 默认20 
+         * 默认栅格列的间隔 默认20
          */
         flexColumnGutter: 20,
         /**
-       * 是否显示栅格的行 默认false
-       */
-        isUserFlexRow: true,
+         * 是否显示栅格的行 默认false
+         */
+        isUserFlexRow: false,
         /**
          * 栅格行的数量
          */
@@ -55,7 +55,7 @@ export const usePedestalStore = defineStore('pedestal', {
          * 栅格行的间隔 默认20
          */
         flexRowGutter: 20,
-      }
+      },
     }
-  }
+  },
 })

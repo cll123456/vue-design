@@ -1,65 +1,63 @@
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { IPaletteObj } from '../canvasRules/canvasRulesType';
-import CanvasRuler from '../canvasRules/index.vue';
-import RulesLine from './RulesLine.vue';
-import { vShow } from 'vue';
-
+import { IPaletteObj } from '../canvasRules/canvasRulesType'
+import CanvasRuler from '../canvasRules/index.vue'
+import RulesLine from './RulesLine.vue'
 
 const props = defineProps<{
   /**
    * 放大或者缩小的倍数
    */
-  scale: number,
+  scale: number
   /**
    * 比列
    */
-  ratio: number,
+  ratio: number
   /**
    * 线距离顶部或者左侧的距离
    */
-  thick: number,
+  thick: number
   /**
    * 尺子的样式
    */
-  palette: IPaletteObj,
+  palette: IPaletteObj
   /**
    * 是否垂直
    */
-  vertical: boolean,
+  vertical: boolean
   /**
    * 长度
    */
-  width: number,
+  width: number
   /**
    * 高度
    */
-  height: number,
+  height: number
   /**
    * 距离实际屏幕开始位置的距离
    */
-  start: number,
+  start: number
   /**
    * 尺子的线（红色的标记线）
    */
-  lines: number[],
+  lines: number[]
   /**
    * 选中区域的开始位置
    */
-  selectStart: number,
+  selectStart: number
   /**
    * 选中区域的长度
    */
-  selectLength: number,
+  selectLength: number
   /**
    * 是否显示所有的线
    */
   isShowReferLine: boolean
 }>()
 
-const showIndicator = ref(false);
+const showIndicator = ref(false)
 
-const valueNum = ref(0);
+const valueNum = ref(0)
 
 /**
  * 动态生成类名
@@ -76,12 +74,12 @@ const rwStyle = computed(() => {
   const hContainer = {
     width: `calc(100% - ${props.thick}px)`,
     height: `${props.thick! + 1}px`,
-    left: `${props.thick}` + 'px'
+    left: `${props.thick}` + 'px',
   }
   const vContainer = {
     width: `${props.thick && props.thick + 1}px`,
     height: `calc(100% - ${props.thick}px)`,
-    top: `${props.thick}` + 'px'
+    top: `${props.thick}` + 'px',
   }
   return props.vertical ? vContainer : hContainer
 })
@@ -94,7 +92,7 @@ const indicatorStyle = computed(() => {
   let positionKey = 'top'
   let borderKey = 'borderLeft'
   positionKey = props.vertical ? 'top' : 'left'
-  borderKey = props.vertical ? 'borderBottom' : 'borderLeft';
+  borderKey = props.vertical ? 'borderBottom' : 'borderLeft'
   return {
     [positionKey]: indicatorOffset + 'px',
     [borderKey]: `1px solid ${props.palette?.lineColor}`,
@@ -105,6 +103,7 @@ const indicatorStyle = computed(() => {
  * 添加指示线
  */
 const handleNewLine = (value: number) => {
+  // eslint-disable-next-line vue/no-mutating-props
   props.lines.push(value)
 }
 
@@ -114,28 +113,30 @@ const handleNewLine = (value: number) => {
 const handleLineRelease = (value: number, index: number) => {
   // 左右或上下超出时, 删除该条对齐线
   const offset = value - props.start
-  const maxOffset =
-    (props.vertical ? props.height : props.width) / props.scale!
+  const maxOffset = (props.vertical ? props.height : props.width) / props.scale!
   if (offset < 0 || offset > maxOffset) {
     handleLineRemove(index)
   } else {
-    props.lines[index] = value;
+    // eslint-disable-next-line vue/no-mutating-props
+    props.lines[index] = value
   }
 }
 
 /**
  * 删除线指示线
  */
-const handleLineRemove = (index: any) => {
+const handleLineRemove = (index: number) => {
+  // eslint-disable-next-line vue/no-mutating-props
   props.lines.splice(index, 1)
 }
-
 </script>
 
 <template>
   <div :class="rwClassName" :style="rwStyle">
     <div class="rule-styles">
       <canvas-ruler
+        v-model:valueNum="valueNum"
+        v-model:showIndicator="showIndicator"
         :vertical="vertical"
         :scale="scale"
         :width="width"
@@ -145,9 +146,7 @@ const handleLineRemove = (index: any) => {
         :select-start="selectStart"
         :select-length="selectLength"
         :palette="palette"
-        v-model:valueNum="valueNum"
-        v-model:showIndicator="showIndicator"
-        @onAddLine="handleNewLine"
+        @on-add-line="handleNewLine"
       ></canvas-ruler>
     </div>
     <div v-show="isShowReferLine" class="lines">
@@ -162,8 +161,8 @@ const handleLineRemove = (index: any) => {
         :palette="palette"
         :vertical="vertical"
         :is-show-refer-line="isShowReferLine"
-        @onRemove="handleLineRemove"
-        @onRelease="handleLineRelease"
+        @on-remove="handleLineRemove"
+        @on-release="handleLineRelease"
       ></rules-line>
     </div>
     <div v-show="showIndicator" class="indicator" :style="indicatorStyle">
@@ -172,7 +171,7 @@ const handleLineRemove = (index: any) => {
   </div>
 </template>
 
-<style lang='scss' scoped >
+<style lang="scss" scoped>
 .line {
   position: absolute;
 }

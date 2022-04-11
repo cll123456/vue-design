@@ -1,23 +1,23 @@
-<script lang='ts' setup>
-import { computed, nextTick, onMounted, reactive, Ref, ref } from 'vue';
-import SketchRuler from './../sketchRuler/index.vue';
-import { useSketchRulerStore } from './../../store/sketchRuler';
-import BgArea from './BgArea.vue';
+<script lang="ts" setup>
+import { computed, nextTick, onMounted, Ref, ref } from 'vue'
+import SketchRuler from './../sketchRuler/index.vue'
+import { useSketchRulerStore } from './../../store/sketchRuler'
+import BgArea from './BgArea.vue'
 import { usePedestalStore } from './../../store/pedestal'
-import GridBg from './GridBg.vue';
-import FlexBg from './FlexBg.vue';
+import GridBg from './GridBg.vue'
+import FlexBg from './FlexBg.vue'
 
-const pedestalStore = usePedestalStore();
+const pedestalStore = usePedestalStore()
 
 const pagePedestalStore = computed(() => pedestalStore)
 
 const props = defineProps({
   /**
-  * 编辑器的宽度
-  */
+   * 编辑器的宽度
+   */
   editorWidth: {
     type: Number,
-    default: 1440
+    default: 1440,
   },
   /**
    * 编辑器的高度
@@ -31,21 +31,21 @@ const props = defineProps({
    */
   editorBgColor: {
     type: String,
-    default: '#abcdef'
+    default: '#abcdef',
   },
   /**
    * 基座的背景颜色
    */
   pedestalBgColor: {
     type: String,
-    default: ''
+    default: '',
   },
   /**
    * 编辑器区域背景设置
    */
   editorBgSetting: {
     type: Object,
-    default: {
+    default: () => ({
       /**
        * 是否使用网格作为背景，默认false
        */
@@ -55,7 +55,7 @@ const props = defineProps({
        */
       gridSize: {
         type: Number,
-        default: 10
+        default: 10,
       },
       /**
        * 是否显示栅格的列 默认false
@@ -66,34 +66,34 @@ const props = defineProps({
        */
       flexColumnSize: {
         type: Number,
-        default: 3
+        default: 3,
       },
       /**
-       * 默认栅格列的间隔 默认20 
+       * 默认栅格列的间隔 默认20
        */
       flexColumnGutter: {
         type: Number,
-        default: 20
+        default: 20,
       },
       /**
-     * 是否显示栅格的行 默认false
-     */
+       * 是否显示栅格的行 默认false
+       */
       isUserFlexRow: Boolean,
       /**
        * 栅格行的数量
        */
       flexRowSize: {
         type: Number,
-        default: 5
+        default: 5,
       },
       /**
        * 栅格行的间隔 默认20
        */
       flexRowGutter: {
         type: Number,
-        default: 20
+        default: 20,
       },
-    }
+    }),
   },
 })
 
@@ -102,21 +102,26 @@ pedestalStore.$patch({
   editorWidth: props.editorWidth,
 })
 
-
 // 使用仓库的参数来作为公共参数，后面需要改直接改仓库来进行同步
-const sketchRulerStore = useSketchRulerStore();
+const sketchRulerStore = useSketchRulerStore()
 
-const pageSketchRulerStore = computed(() => sketchRulerStore);
+const pageSketchRulerStore = computed(() => sketchRulerStore)
 //  屏幕ref
-const screensRef: Ref<HTMLDivElement | null> = ref(null);
+const screensRef: Ref<HTMLDivElement | null> = ref(null)
 // 容器ref
 const containerRef: Ref<HTMLDivElement | null> = ref(null)
 
 sketchRulerStore.$patch({
   lines: {
-    h: [...pageSketchRulerStore.value.lines.h, pagePedestalStore.value.editorWidth],
-    v: [...pageSketchRulerStore.value.lines.v, pagePedestalStore.value.editorHeight]
-  }
+    h: [
+      ...pageSketchRulerStore.value.lines.h,
+      pagePedestalStore.value.editorWidth,
+    ],
+    v: [
+      ...pageSketchRulerStore.value.lines.v,
+      pagePedestalStore.value.editorHeight,
+    ],
+  },
 })
 
 /**
@@ -125,7 +130,8 @@ sketchRulerStore.$patch({
 const canvasStyle = computed(() => {
   return {
     width: pagePedestalStore.value.editorWidth * sketchRulerStore.scale + 'px',
-    height: pagePedestalStore.value.editorHeight * sketchRulerStore.scale + 'px',
+    height:
+      pagePedestalStore.value.editorHeight * sketchRulerStore.scale + 'px',
     background: pagePedestalStore.value.pedestalBgColor,
   }
 })
@@ -137,21 +143,24 @@ const screensStyle = computed(() => ({
   background: pagePedestalStore.value.editorBgColor,
 }))
 
-
 /***
  * 开始滚动
  */
 const handleScroll = () => {
-  const screensRect = document.querySelector('#screens')!.getBoundingClientRect()
+  const screensRect = document
+    .querySelector('#screens')!
+    .getBoundingClientRect()
   const canvasRect = document
     .querySelector('#myCanvas')!
-    .getBoundingClientRect();
+    .getBoundingClientRect()
 
   // 标尺开始的刻度
   const startX =
-    (screensRect.left + sketchRulerStore.thick - canvasRect.left) / sketchRulerStore.scale
+    (screensRect.left + sketchRulerStore.thick - canvasRect.left) /
+    sketchRulerStore.scale
   const startY =
-    (screensRect.top + sketchRulerStore.thick - canvasRect.top) / sketchRulerStore.scale;
+    (screensRect.top + sketchRulerStore.thick - canvasRect.top) /
+    sketchRulerStore.scale
   sketchRulerStore.$patch({
     ...sketchRulerStore,
     startX: startX,
@@ -162,10 +171,10 @@ const handleScroll = () => {
 const handleWheel = (e: WheelEvent) => {
   // 是否按住CTRL键盘， 缩放浏览器大小
   if (e.ctrlKey || e.metaKey) {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
     const nextScale = parseFloat(
-      Math.max(0.2, sketchRulerStore.scale - e.deltaY / 500).toFixed(2)
+      Math.max(0.2, sketchRulerStore.scale - e.deltaY / 500).toFixed(2),
     )
     sketchRulerStore.$patch({
       scale: nextScale,
@@ -182,9 +191,13 @@ const handleWheel = (e: WheelEvent) => {
 const initEditorRadio = () => {
   // 计算传入的编辑区的宽高和实际物理设备的宽高，形成比例,适配当前屏幕。
   if (pagePedestalStore.value.editorWidth > window.screen.width - 250) {
-    const widthRadio = Math.floor(((window.screen.width - 250) / pagePedestalStore.value.editorWidth) * 100) / 100
+    const widthRadio =
+      Math.floor(
+        ((window.screen.width - 250) / pagePedestalStore.value.editorWidth) *
+          100,
+      ) / 100
     sketchRulerStore.$patch({
-      initScale: widthRadio
+      initScale: widthRadio,
     })
     sketchRulerStore.$patch({
       scale: widthRadio,
@@ -198,33 +211,38 @@ const initEditorRadio = () => {
 onMounted(() => {
   // 滚动到距离左边200的位置，方便放其他的菜单
   screensRef.value!.scrollLeft =
-    containerRef.value!.getBoundingClientRect().width / 2 - 200;
+    containerRef.value!.getBoundingClientRect().width / 2 - 200
   // 适配当前最合适的显示区域
-  initEditorRadio();
+  initEditorRadio()
 
   //  当按下ctrl + 0的时候，视图需要恢复原状
-  window.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.key === '0') {
-      sketchRulerStore.$patch({
-        scale: sketchRulerStore.initScale,
-      })
-      nextTick(() => {
-        handleScroll()
-      })
-    }
-  }, { passive: false });
+  window.addEventListener(
+    'keydown',
+    (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === '0') {
+        sketchRulerStore.$patch({
+          scale: sketchRulerStore.initScale,
+        })
+        nextTick(() => {
+          handleScroll()
+        })
+      }
+    },
+    { passive: false },
+  )
 
   //  禁用浏览器的默认放大缩小事件
-  window.addEventListener('wheel', (e) => {
-    if (e.ctrlKey) {
-      // 取消浏览器默认的放大缩小网页行为
-      e.preventDefault()
-    }
-  }, { passive: false })
-
+  window.addEventListener(
+    'wheel',
+    (e) => {
+      if (e.ctrlKey) {
+        // 取消浏览器默认的放大缩小网页行为
+        e.preventDefault()
+      }
+    },
+    { passive: false },
+  )
 })
-
-
 </script>
 <template>
   <div class="wrapper">
@@ -243,10 +261,10 @@ onMounted(() => {
     ></sketch-ruler>
     <div
       id="screens"
-      class="screens"
       ref="screensRef"
-      @wheel="handleWheel"
+      class="screens"
       :style="screensStyle"
+      @wheel="handleWheel"
       @scroll="handleScroll"
     >
       <div ref="containerRef" class="screen-container">
@@ -255,22 +273,19 @@ onMounted(() => {
             :style="{
               width: pagePedestalStore.editorWidth + 'px',
               height: pagePedestalStore.editorHeight + 'px',
-              position: 'absolute'
+              position: 'absolute',
             }"
           >
             <!-- 网格背景 -->
             <grid-bg></grid-bg>
             <!-- flex背景 -->
             <flex-bg></flex-bg>
+            <!-- 内容区域 -->
             <div
               class="myCanvas--container"
               :style="{ transform: `scale(${sketchRulerStore.scale})` }"
             >
-              <div>
-                23424324324324
-                <div>sd 大多数地方</div>
-              </div>ewewe
-              <p>234324dfs得瑟得瑟</p>
+              <slot name="default"></slot>
             </div>
           </div>
         </div>
@@ -281,7 +296,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .wrapper {
   position: absolute;
   width: 100%;

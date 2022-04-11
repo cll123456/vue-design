@@ -1,61 +1,59 @@
-<script lang='ts' setup>
-import { computed, onMounted, ref } from 'vue';
-import { IPaletteObj } from '../canvasRules/canvasRulesType';
-import { vShow } from 'vue';
+<script lang="ts" setup>
+import { computed, onMounted, ref } from 'vue'
+import { IPaletteObj } from '../canvasRules/canvasRulesType'
 
 const props = defineProps<{
   /**
    * 放大或者缩小的倍数
    */
-  scale: number,
+  scale: number
   /**
    * 距离线的距离
    */
-  thick: number,
+  thick: number
   /**
    * 线的样式
    */
-  palette: IPaletteObj,
+  palette: IPaletteObj
   /**
-   * 线的下标，第几条线 
+   * 线的下标，第几条线
    */
-  index: number,
+  index: number
   /**
    * 距离屏幕的开始位置，x轴或者y轴
    */
-  start: number,
+  start: number
   /**
    * 是否垂直
    */
-  vertical: boolean,
+  vertical: boolean
   /**
    * 线需要显示的位置
    */
-  value: number,
+  value: number
   /**
    * 是否显示所有的参考线
    */
   isShowReferLine: boolean
-}>();
-
+}>()
 
 const emits = defineEmits<{
   /**
    * 鼠标点击下去，需要画线
    */
-  (event: 'onMouseDown'): void,
+  (event: 'onMouseDown'): void
   /**
    * 鼠标释放
    */
-  (event: 'onRelease', startValue: number, index: number): void,
+  (event: 'onRelease', startValue: number, index: number): void
   /**
    * 移动线
    */
-  (event: 'onRemove', index: number): void,
-}>();
+  (event: 'onRemove', index: number): void
+}>()
 
 // 开始画线的位置
-const startValue = ref(0);
+const startValue = ref(0)
 // 默认显示线
 const showLine = ref(true)
 
@@ -64,7 +62,7 @@ onMounted(() => {
 })
 /**
  * 是否单条显示线
- * @param offset 
+ * @param offset
  */
 const setShowLine = (offset: number) => {
   showLine.value = offset >= 0
@@ -96,10 +94,10 @@ const borderCursor = computed(() => {
     ? props.vertical
       ? 'ns-resize'
       : 'ew-resize'
-    : 'none';
+    : 'none'
   return {
     cursor: cursorValue,
-    ...border
+    ...border,
   }
 })
 
@@ -123,9 +121,7 @@ const handleDown = (e: MouseEvent) => {
   emits('onMouseDown')
   const onMove = (e: MouseEvent) => {
     const currentD = props.vertical ? e.clientY : e.clientX
-    const newValue = Math.round(
-      initValue + (currentD - startD) / props.scale!
-    )
+    const newValue = Math.round(initValue + (currentD - startD) / props.scale!)
     startValue.value = newValue
   }
   const onEnd = () => {
@@ -146,7 +142,12 @@ const handleRemove = () => {
 </script>
 <template>
   <!-- 线的显示 -->
-  <div v-show="showLine" class="line" :style="[offset, borderCursor]" @mousedown="handleDown">
+  <div
+    v-show="showLine"
+    class="line"
+    :style="[offset, borderCursor]"
+    @mousedown="handleDown"
+  >
     <div class="action" :style="actionStyle">
       <span class="del" @click="handleRemove">&times;</span>
       <span class="value cusValue">{{ startValue }}</span>
@@ -154,7 +155,7 @@ const handleRemove = () => {
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .line {
   pointer-events: auto;
   position: absolute;
