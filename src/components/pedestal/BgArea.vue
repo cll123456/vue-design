@@ -61,9 +61,10 @@ const handleDown = (e: MouseEvent) => {
   left: 50%;
   width: 1440px;
   height: 1024px;
-  background: rgba(204, 204, 204, 0.459);
+  background: transparent;
   transform-origin: 50% 0;
-  z-index: 0;
+  z-index: 1;
+  pointer-events: none;
 
   .pull-down--container {
     position: absolute;
@@ -79,6 +80,7 @@ const handleDown = (e: MouseEvent) => {
     cursor: row-resize;
     opacity: 0;
     transition: all 0.5s linear;
+    pointer-events: painted;
 
     &:hover {
       opacity: 1;

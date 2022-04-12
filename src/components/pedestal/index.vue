@@ -249,6 +249,13 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', keydownRecoveryView)
   window.removeEventListener('wheel', forbitWheel)
 })
+
+const showRightPanel = (e: MouseEvent) => {
+  const myCanvasContainerDom = document.getElementById('myCanvasContainerId')
+  if (e.target === myCanvasContainerDom) {
+    console.log('myCanvasContainerId')
+  }
+}
 </script>
 <template>
   <div class="wrapper">
@@ -290,8 +297,10 @@ onBeforeUnmount(() => {
             <flex-bg></flex-bg>
             <!-- 内容区域 -->
             <div
+              id="myCanvasContainerId"
               class="myCanvas--container"
               :style="{ transform: `scale(${sketchRulerStore.scale})` }"
+              @click="showRightPanel"
             >
               <slot name="default"></slot>
             </div>
@@ -318,6 +327,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   overflow: auto;
+  pointer-events: auto;
 }
 
 .screen-container {
