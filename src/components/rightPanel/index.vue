@@ -19,7 +19,9 @@ const isShowRightPanel = computed(() => rightPanelStore.isShowRightPanel)
       v-if="isShowRightPanel"
       class="absolute h-full right-0 z-10000"
       :style="rightStyle"
-    ></div>
+    >
+      <slot name="default"></slot>
+    </div>
   </transition>
 </template>
 
