@@ -6,6 +6,7 @@ import BgArea from './BgArea.vue'
 import { usePedestalStore } from './../../store/pedestal'
 import GridBg from './GridBg.vue'
 import FlexBg from './FlexBg.vue'
+import RightPanel from '../rightPanel/index.vue'
 
 const pedestalStore = usePedestalStore()
 
@@ -310,6 +311,8 @@ const showRightPanel = (e: MouseEvent) => {
         <bg-area></bg-area>
       </div>
     </div>
+    <!-- 右侧面板 -->
+    <RightPanel></RightPanel>
   </div>
 </template>
 

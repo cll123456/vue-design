@@ -4,10 +4,12 @@ import { resolve } from 'path'
 import components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Unocss from 'unocss/vite'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    Unocss(),
     // 自动引入组件
     components({
       dirs: ['src/components'],
