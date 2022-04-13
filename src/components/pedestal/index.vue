@@ -4,7 +4,6 @@ import { useSketchRulerStore } from './../../store/sketchRuler'
 import RightPanel from '../rightPanel/index.vue'
 import BasicContainer from './BasicContainer.vue'
 import { useRightPanelStore } from '@/store/rightPanel'
-import { Ref } from 'vue'
 
 // 使用仓库的参数来作为公共参数，后面需要改直接改仓库来进行同步
 const sketchRulerStore = useSketchRulerStore()

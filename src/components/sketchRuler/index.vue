@@ -176,7 +176,7 @@ const onCornerClick = (e: MouseEvent) => {
 <style lang="scss" scoped>
 .style-ruler {
   position: absolute;
-  z-index: 2022; /* 需要比resizer高 */
+  z-index: 2; /* 需要比resizer高 */
   width: 100%; /* scrollbar width */
   height: 100%;
   overflow: hidden;

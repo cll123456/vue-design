@@ -17,7 +17,7 @@ const isShowRightPanel = computed(() => rightPanelStore.isShowRightPanel)
   <transition name="slide-fade">
     <div
       v-if="isShowRightPanel"
-      class="absolute h-full right-0 z-10000 box-border"
+      class="absolute h-full right-0 z-10 box-border"
       border="l-1 r-0 t-0 b-0 solid #dadadc"
       :style="rightStyle"
     >

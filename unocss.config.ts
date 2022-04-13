@@ -9,7 +9,7 @@ import {
 
 export default defineConfig({
   shortcuts: [
-    ['exclude-h-n-s', 'h-[calc(100vh-14.4vw-3rem)] common-content'],
+    ['flex-c', 'flex justify-center items-center'],
     ['exclude-h-s', 'h-[calc(100vh-14.4vw)] common-content'],
     [
       'common-content',
@@ -59,11 +59,11 @@ export default defineConfig({
       lineColor: '#dadadc',
     },
     fontSize: {
-      xs: '.6rem',
-      sm: '.65rem',
-      base: '.7rem',
-      lg: '.8rem',
-      xl: '1rem',
+      xs: '.4rem',
+      sm: '.8rem',
+      base: '1rem',
+      lg: '1.4rem',
+      xl: '1.6rem',
       '2xl': '2rem',
       '3xl': '3rem',
       '4xl': '4rem',
