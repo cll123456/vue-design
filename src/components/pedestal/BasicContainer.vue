@@ -4,7 +4,6 @@ import { usePedestalStore } from './../../store/pedestal'
 import { Ref } from 'vue'
 import BasicContainerRightPanel from './BasicContainerRightPanel.vue'
 import { useRightPanelStore } from '@/store/rightPanel'
-import { myComponents } from '@/types/common'
 
 const pedestalStore = usePedestalStore()
 
@@ -259,7 +258,7 @@ const showRightPanel = (e: MouseEvent) => {
   if (e.target === myCanvasContainerDom) {
     rightPanelStore.$patch({
       // eslint-disable-next-line
-      rightPanelComp: BasicContainerRightPanel as any,
+      rightPanelComp: markRaw(BasicContainerRightPanel),
       isShowRightPanel: true,
     })
   }
