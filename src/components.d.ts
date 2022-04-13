@@ -4,6 +4,8 @@
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BasicContainer: typeof import('./components/pedestal/BasicContainer.vue')['default']
+    BasicContainerRightPanel: typeof import('./components/pedestal/BasicContainerRightPanel.vue')['default']
     BgArea: typeof import('./components/pedestal/BgArea.vue')['default']
     CanvasRules: typeof import('./components/canvasRules/index.vue')['default']
     FlexBg: typeof import('./components/pedestal/FlexBg.vue')['default']

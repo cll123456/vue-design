@@ -56,6 +56,7 @@ export default defineConfig({
       textDisabled: '#aaa',
       light: '#fff',
       dark: `#272727`,
+      lineColor: '#dadadc',
     },
     fontSize: {
       xs: '.6rem',

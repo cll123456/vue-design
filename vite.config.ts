@@ -13,6 +13,7 @@ export default defineConfig({
     // 自动引入组件
     components({
       dirs: ['src/components'],
+      extensions: ['vue'],
       resolvers: [ElementPlusResolver()],
       dts: './src/components.d.ts',
     }),
