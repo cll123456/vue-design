@@ -27,14 +27,20 @@ const colWidth = computed(() => {
     pagePedestalStore.value.editorBgSetting.flexColumnGutter *
     sketchRulerStore.scale
   // 左右两边距离40px,
-  return (
+  const res =
     (width -
       20 -
       20 -
       (pagePedestalStore.value.editorBgSetting.flexColumnSize - 1) *
         midBlankWidth) /
     pagePedestalStore.value.editorBgSetting.flexColumnSize
-  )
+  pedestalStore.$patch({
+    editorBgSetting: {
+      ...pedestalStore.editorBgSetting,
+      flexColumnPerVal: res,
+    },
+  })
+  return res
 })
 /**
  * 列的样式
@@ -63,15 +69,21 @@ const rowHeight = computed(() => {
   const midBlankHight =
     pagePedestalStore.value.editorBgSetting.flexRowGutter *
     sketchRulerStore.scale
-  // 左右两边距离40px,
-  return (
+  const res =
     (height -
       20 -
       20 -
       (pagePedestalStore.value.editorBgSetting.flexRowSize - 1) *
         midBlankHight) /
     pagePedestalStore.value.editorBgSetting.flexRowSize
-  )
+  // 左右两边距离40px,
+  pedestalStore.$patch({
+    editorBgSetting: {
+      ...pedestalStore.editorBgSetting,
+      flexRowPerVal: res,
+    },
+  })
+  return res
 })
 
 /**

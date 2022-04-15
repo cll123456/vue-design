@@ -16,6 +16,14 @@ export const usePedestalStore = defineStore('pedestal', {
        */
       editorBgColor: 'F5F5F5',
       /**
+       * 编辑器区域初始值的背景颜色
+       */
+      editorBgInitColor: '#F5F5F5',
+      /**
+       * 基座的背景初始值颜色
+       */
+      pedestalBgInitColor: '#ffffff',
+      /**
        * 基座的背景颜色
        */
       pedestalBgColor: '#ffffff',
@@ -44,6 +52,10 @@ export const usePedestalStore = defineStore('pedestal', {
          */
         flexColumnGutter: 20,
         /**
+         * 每一列的长度 默认0
+         */
+        flexColumnPerVal: 0,
+        /**
          * 是否显示栅格的行 默认false
          */
         isUserFlexRow: false,
@@ -51,6 +63,10 @@ export const usePedestalStore = defineStore('pedestal', {
          * 栅格行的数量
          */
         flexRowSize: 5,
+        /**
+         * 每一行的长度 默认0
+         */
+        flexRowPerVal: 0,
         /**
          * 栅格行的间隔 默认20
          */
