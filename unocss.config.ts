@@ -10,7 +10,11 @@ import {
 export default defineConfig({
   shortcuts: [
     ['flex-c', 'flex justify-center items-center'],
-    ['exclude-h-s', 'h-[calc(100vh-14.4vw)] common-content'],
+    [
+      'icon-style',
+      'cursor-pointer transition-all ease-linear duration-50 hover:color-slate500 active:color-slate900',
+    ],
+    ['line-style', 'h-1px w-full bg-lineColor'],
     [
       'common-content',
       'w-full overflow-y-auto overflow-x-hidden text-black-100 dark:text-white-100 bg-gray-100 dark:bg-gray-500 p-2 hyphens-auto',
@@ -60,6 +64,7 @@ export default defineConfig({
     },
     fontSize: {
       xs: '.4rem',
+      sml: '.6rem',
       sm: '.8rem',
       base: '1rem',
       lg: '1.4rem',

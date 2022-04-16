@@ -7,7 +7,7 @@ const clickDiv = () => {
 
 <template>
   <div class="wrapper">
-    <pedestal :editor-height="1024" :editor-width="1440">
+    <pedestal>
       <p>1232</p>
       <span>sdfdfsf</span>
       <div class="w-50 h-50 bg-success500" @click="clickDiv">

@@ -14,7 +14,7 @@ export const usePedestalStore = defineStore('pedestal', {
       /**
        * 编辑器区域的背景颜色
        */
-      editorBgColor: 'F5F5F5',
+      editorBgColor: '#F5F5F5',
       /**
        * 编辑器区域初始值的背景颜色
        */
@@ -73,5 +73,11 @@ export const usePedestalStore = defineStore('pedestal', {
         flexRowGutter: 20,
       },
     }
+  },
+  getters: {
+    /**
+     * 获取右侧容器内容设置
+     */
+    basicPedestalSettings: (state) => state.editorBgSetting,
   },
 })

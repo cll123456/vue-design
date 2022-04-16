@@ -258,7 +258,7 @@ const showRightPanel = (e: MouseEvent) => {
   if (e.target === myCanvasContainerDom) {
     rightPanelStore.$patch({
       // eslint-disable-next-line
-      rightPanelComp: markRaw(BasicContainerRightPanel),
+      rightPanelComp: markRaw(BasicContainerRightPanel) as any,
       isShowRightPanel: true,
     })
   }
