@@ -25,6 +25,9 @@ export const useRightPanelStore = defineStore<
   rightPanelState,
   {
     rightPanelComps: (state: rightPanelState) => myComponents | undefined
+  },
+  {
+    changeRightPanelComps: (comp: myComponents) => void
   }
 >('rightPanel', {
   state: () => {
@@ -54,5 +57,10 @@ export const useRightPanelStore = defineStore<
      * @returns
      */
     rightPanelComps: (state: rightPanelState) => state.rightPanelComp,
+  },
+  actions: {
+    changeRightPanelComps(comp: myComponents) {
+      this.rightPanelComp = markRaw(comp)
+    },
   },
 })

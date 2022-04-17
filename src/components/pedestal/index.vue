@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import SketchRuler from './../sketchRuler/index.vue'
 import { useSketchRulerStore } from './../../store/sketchRuler'
-import RightPanel from '../rightPanel/index.vue'
 import BasicContainer from './BasicContainer.vue'
 import { useRightPanelStore } from '@/store/rightPanel'
+const RightPanel = defineAsyncComponent(() => import('../rightPanel/index.vue'))
 
 // 使用仓库的参数来作为公共参数，后面需要改直接改仓库来进行同步
 const sketchRulerStore = useSketchRulerStore()
 const pageSketchRulerStore = computed(() => sketchRulerStore)
-const rightPanel = useRightPanelStore()
+const rightPanelStore = useRightPanelStore()
 </script>
 <template>
   <div
@@ -38,7 +38,7 @@ const rightPanel = useRightPanelStore()
     <!-- 右侧面板 -->
     <RightPanel>
       <template #default>
-        <component :is="rightPanel.rightPanelComps"></component>
+        <component :is="rightPanelStore.rightPanelComps"></component>
       </template>
     </RightPanel>
   </div>

@@ -2,8 +2,11 @@
 import { useSketchRulerStore } from './../../store/sketchRuler'
 import { usePedestalStore } from './../../store/pedestal'
 import { Ref } from 'vue'
-import BasicContainerRightPanel from './BasicContainerRightPanel.vue'
 import { useRightPanelStore } from '@/store/rightPanel'
+import { getAsyncComponent } from '@/compLoadingUtils'
+const BasicContainerRightPanel = getAsyncComponent(
+  './components/pedestal/BasicContainerRightPanel.vue',
+)
 
 const pedestalStore = usePedestalStore()
 
@@ -257,10 +260,9 @@ const showRightPanel = (e: MouseEvent) => {
   const myCanvasContainerDom = document.getElementById('myCanvasContainerId')
   if (e.target === myCanvasContainerDom) {
     rightPanelStore.$patch({
-      // eslint-disable-next-line
-      rightPanelComp: markRaw(BasicContainerRightPanel) as any,
       isShowRightPanel: true,
     })
+    rightPanelStore.changeRightPanelComps(BasicContainerRightPanel)
   }
 }
 /**
