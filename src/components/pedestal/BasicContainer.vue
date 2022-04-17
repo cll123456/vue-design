@@ -3,10 +3,12 @@ import { useSketchRulerStore } from './../../store/sketchRuler'
 import { usePedestalStore } from './../../store/pedestal'
 import { Ref } from 'vue'
 import { useRightPanelStore } from '@/store/rightPanel'
-import { getAsyncComponent } from '@/compLoadingUtils'
-const BasicContainerRightPanel = getAsyncComponent(
-  './components/pedestal/BasicContainerRightPanel.vue',
-)
+import { debounce } from '@/utils/perfectUtils'
+const BasicContainerRightPanel = defineAsyncComponent({
+  loader: () => import('@/components/pedestal/BasicContainerRightPanel.vue'),
+  loadingComponent: () => import('@/components/compLoading/index.vue'),
+  errorComponent: () => import('@/components/ComLoadingError/index.vue'),
+})
 
 const pedestalStore = usePedestalStore()
 
@@ -165,7 +167,6 @@ const handleScroll = () => {
     (screensRect.top + sketchRulerStore.thick - canvasRect.top) /
     sketchRulerStore.scale
   sketchRulerStore.$patch({
-    ...sketchRulerStore,
     startX: startX,
     startY: startY,
   })

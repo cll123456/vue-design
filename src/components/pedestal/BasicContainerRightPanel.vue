@@ -39,7 +39,6 @@ const change = (
   isEditorSetting = false,
   type: 'input' | 'checkbox' = 'input',
 ) => {
-  console.log((<HTMLInputElement>e.target)!.value)
   if (isEditorSetting) {
     if (type === 'input') {
       pedestalStore.$patch({

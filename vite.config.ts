@@ -30,4 +30,12 @@ export default defineConfig({
     },
     dedupe: ['vue'],
   },
+  // build: {
+  //   sourcemap: true,
+  //   minify: 'terser',
+  //   terserOptions: {
+  //     ecma: 2020,
+  //     compress: false,
+  //   },
+  // },
 })
