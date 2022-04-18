@@ -43,9 +43,14 @@ const handleDown = (e: MouseEvent) => {
 }
 </script>
 <template>
-  <div class="canvas-bg-area" :style="containerStyle">
+  <div
+    class="absolute top-80px left-50% bg-transparent z-1 pointer-events-none origin-top-left"
+    :style="containerStyle"
+  >
     <div
-      class="pull-down--container"
+      class="absolute w-full h-20px leading-20px bottom--20px bg-#abcdef select-none cursor-row-resize opacity-0 pointer-events-auto transition-all duration-500 ease-linear"
+      hover="opacity-100"
+      text="#ef0b7f 12px center"
       :style="{ width: containerStyle.width }"
       @mousedown="handleDown"
     >
@@ -54,37 +59,4 @@ const handleDown = (e: MouseEvent) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.canvas-bg-area {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  width: 1440px;
-  height: 1024px;
-  background: transparent;
-  transform-origin: 50% 0;
-  z-index: 1;
-  pointer-events: none;
-
-  .pull-down--container {
-    position: absolute;
-    width: 100%;
-    bottom: -20px;
-    background-color: #abcdef;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #ef0b7f;
-    user-select: none;
-    cursor: row-resize;
-    opacity: 0;
-    transition: all 0.5s linear;
-    pointer-events: painted;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

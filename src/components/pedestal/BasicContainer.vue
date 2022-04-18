@@ -283,13 +283,21 @@ const closeRightPanel = (e: MouseEvent) => {
   <div
     id="screens"
     ref="screensRef"
-    class="screens"
+    class="abs-full overflow-auto pointer-events-auto"
     :style="screensStyle"
     @wheel="handleWheel"
     @scroll="handleScroll"
   >
-    <div ref="containerRef" class="screen-container" @click="closeRightPanel">
-      <div id="myCanvas" class="myCanvas" :style="canvasStyle">
+    <div
+      ref="containerRef"
+      class="absolute w-5000px h-3000px"
+      @click="closeRightPanel"
+    >
+      <div
+        id="myCanvas"
+        class="absolute top-80px left-50% bg-lightblue z-1 origin-top-left"
+        :style="canvasStyle"
+      >
         <div
           :style="{
             width: pagePedestalStore.editorWidth + 'px',
@@ -304,7 +312,7 @@ const closeRightPanel = (e: MouseEvent) => {
           <!-- 内容区域 -->
           <div
             id="myCanvasContainerId"
-            class="myCanvas--container"
+            class="abs-full origin-left-top"
             :style="{ transform: `scale(${sketchRulerStore.scale})` }"
             @click="showRightPanel"
           >
@@ -318,33 +326,4 @@ const closeRightPanel = (e: MouseEvent) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.screens {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  pointer-events: auto;
-}
-
-.screen-container {
-  position: absolute;
-  width: 5000px;
-  height: 3000px;
-  .myCanvas {
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    background: lightblue;
-    transform-origin: 50% 0;
-    z-index: 1;
-
-    .myCanvas--container {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transform-origin: left top;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

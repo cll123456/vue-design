@@ -15,6 +15,7 @@ export default defineConfig({
       'cursor-pointer transition-all ease-linear duration-50 hover:color-slate500 active:color-slate900',
     ],
     ['line-style', 'h-1px w-full bg-lineColor'],
+    ['abs-full', 'absolute w-full h-full'],
     [
       'common-content',
       'w-full overflow-y-auto overflow-x-hidden text-black-100 dark:text-white-100 bg-gray-100 dark:bg-gray-500 p-2 hyphens-auto',

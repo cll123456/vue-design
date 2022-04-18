@@ -19,7 +19,7 @@ const getContainerStyle = computed(() => {
 <template>
   <div
     v-if="pagePedestalStore.editorBgSetting.isUserGrid"
-    class="gridBg--container"
+    class="abs-full z--1"
     :style="getContainerStyle"
   >
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -63,11 +63,4 @@ const getContainerStyle = computed(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.gridBg--container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-}
-</style>
+<style lang="scss" scoped></style>

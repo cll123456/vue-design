@@ -106,33 +106,18 @@ const rowStyle = computed(() => {
 })
 </script>
 <template>
-  <div class="flexBg--container" :style="getContainerStyle">
+  <div class="abs-full z-0 pointer-events-none" :style="getContainerStyle">
     <div
       v-if="pagePedestalStore.editorBgSetting.isUserFlexColumn"
-      class="column--container"
+      class="abs-full"
       :style="colStyle"
     ></div>
     <div
       v-if="pagePedestalStore.editorBgSetting.isUserFlexRow"
-      class="row--container"
+      class="abs-full"
       :style="rowStyle"
     ></div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.flexBg--container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-
-  .row--container,
-  .column--container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
