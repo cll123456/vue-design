@@ -5,6 +5,7 @@ import { Ref } from 'vue'
 import { useRightPanelStore } from '@/store/rightPanel'
 import CompLoading from '@/components/compLoading/index.vue'
 import ComLoadingError from '@/components/ComLoadingError/index.vue'
+import { useEventRegister } from '@/hooks/useEventRegister'
 const BasicContainerRightPanel = defineAsyncComponent({
   loader: () => import('@/components/pedestal/BasicContainerRightPanel.vue'),
   loadingComponent: CompLoading,
@@ -236,23 +237,17 @@ const forbitWheel = (e: WheelEvent) => {
   }
 }
 
+//  当按下ctrl + 0的时候，视图需要恢复原状
+useEventRegister(window, keydownRecoveryView, 'keydown')
+//  禁用浏览器的默认放大缩小事件
+useEventRegister(window, forbitWheel, 'wheel')
+
 onMounted(() => {
   // 滚动到距离左边200的位置，方便放其他的菜单
   screensRef.value!.scrollLeft =
     containerRef.value!.getBoundingClientRect().width / 2 - 200
   // 适配当前最合适的显示区域
   initEditorRadio()
-
-  //  当按下ctrl + 0的时候，视图需要恢复原状
-  window.addEventListener('keydown', keydownRecoveryView, { passive: false })
-
-  //  禁用浏览器的默认放大缩小事件
-  window.addEventListener('wheel', forbitWheel, { passive: false })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', keydownRecoveryView)
-  window.removeEventListener('wheel', forbitWheel)
 })
 
 /**
