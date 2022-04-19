@@ -3,6 +3,7 @@ import Pedestal from './components/pedestal/index.vue'
 import { useRightPanelStore } from './store/rightPanel'
 import CompLoading from '@/components/compLoading/index.vue'
 import ComLoadingError from '@/components/ComLoadingError/index.vue'
+import LeftMenu from './components/leftMenu/index.vue'
 const Comp = defineAsyncComponent({
   loader: () => import('@/components/comLoadingError/index.vue'),
   loadingComponent: CompLoading,
@@ -19,24 +20,21 @@ const clickDiv = () => {
 </script>
 
 <template>
-  <div class="wrapper">
-    <pedestal>
-      <p>1232</p>
-      <span>sdfdfsf</span>
-      <div class="w-50 h-50 bg-success500" @click="clickDiv">
-        232
-        <p>p3323</p>
-      </div>
-    </pedestal>
+  <div class="abs-full flex">
+    <div class="w-46px">
+      <LeftMenu></LeftMenu>
+    </div>
+    <div class="w-[calc(100%-46px)] h-full relative">
+      <pedestal>
+        <p>1232</p>
+        <span>sdfdfsf</span>
+        <div class="w-50 h-50 bg-success500" @click="clickDiv">
+          232
+          <p>p3323</p>
+        </div>
+      </pedestal>
+    </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-.wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #f5f5f5;
-  border: 1px solid #dadadc;
-}
-</style>
+<style scoped lang="scss"></style>

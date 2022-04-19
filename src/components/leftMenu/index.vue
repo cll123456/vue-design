@@ -2,10 +2,15 @@
 import { useEventRegister } from '@/hooks/useEventRegister'
 import { useLeftMenuPanelStore } from '@/store/leftMenuPanel'
 import { myComponents } from '@/types/common'
+import CompLoading from '@/components/compLoading/index.vue'
+import ComLoadingError from '@/components/ComLoadingError/index.vue'
+const CompMenus = defineAsyncComponent({
+  loader: () => import('@/components/leftMenu/CompMenus.vue'),
+  loadingComponent: CompLoading,
+  errorComponent: ComLoadingError,
+})
+
 const leftMenuStore = useLeftMenuPanelStore()
-const Test = defineAsyncComponent(
-  () => import('@/components/leftMenu/Test.vue'),
-)
 
 useEventRegister(
   window,
@@ -49,6 +54,14 @@ const closePanel = () => {
     hasShowPanel: false,
   })
 }
+/**
+ * 选中对应组件，显示图标
+ */
+const chooseCurComp = computed(
+  () => (comp: myComponents) =>
+    comp === leftMenuStore.getCurComp &&
+    leftMenuStore.getStateProps.hasShowPanel,
+)
 </script>
 <template>
   <div class="relative w-full h-full">
@@ -58,9 +71,11 @@ const closePanel = () => {
     >
       <el-tooltip effect="dark" content="组 件" placement="right-start">
         <span
-          class="i-mdi:puzzle-outline icon-style m-t-3"
           text="#8e99ab lg"
-          @click="showPanel('组件', Test)"
+          :class="`i-mdi:puzzle-outline icon-style m-t-3  ${
+            chooseCurComp(CompMenus) ? 'text-primary' : 'text-#8e99ab'
+          }`"
+          @click="showPanel('组件', CompMenus)"
         ></span>
       </el-tooltip>
       <el-tooltip effect="dark" content="图 片" placement="right-start">
@@ -77,7 +92,7 @@ const closePanel = () => {
       <div
         v-if="leftMenuStore.getStateProps.hasShowPanel"
         :style="{ width: leftMenuStore.getStateProps.panelWidth + 'px' }"
-        class="absolute h-full w-300px p-2 top-0 left-46px bg-white z-3"
+        class="absolute h-full w-300px p-2 top-0 left-46px bg-white z-3 box-border"
         style="box-shadow: 4px 6px 6px 0 rgb(31 50 88 / 8%)"
       >
         <div class="p-2 flex justify-between">
