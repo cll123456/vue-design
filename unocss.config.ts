@@ -68,7 +68,7 @@ export default defineConfig({
       sml: '.6rem',
       sm: '.8rem',
       base: '1rem',
-      lg: '1.4rem',
+      lg: '1.2rem',
       xl: '1.6rem',
       '2xl': '2rem',
       '3xl': '3rem',

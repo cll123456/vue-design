@@ -11,10 +11,7 @@ const pageSketchRulerStore = computed(() => sketchRulerStore)
 const rightPanelStore = useRightPanelStore()
 </script>
 <template>
-  <div
-    class="absolute w-full h-full bg-#f5f5f5 overflow-hidden"
-    border="1px solid #dadadc"
-  >
+  <div class="abs-full bg-#f5f5f5 overflow-hidden" border="1px solid #dadadc">
     <!-- 尺子 -->
     <sketch-ruler
       :thick="pageSketchRulerStore.thick"

@@ -12,4 +12,21 @@
   transform: translateX(100%);
   opacity: 0;
 }
+
 /* 水平滑动动画结束 */
+
+/* 页面opacity从0-1动画开始 */
+.linear-opacity-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.linear-opacity-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.linear-opacity-enter-from,
+.linear-opacity-leave-to {
+  opacity: 0;
+}
+
+/* 页面opacity从0-1动画结束 */

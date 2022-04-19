@@ -15,11 +15,13 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     FlexBg: typeof import('./components/pedestal/FlexBg.vue')['default']
     GridBg: typeof import('./components/pedestal/GridBg.vue')['default']
+    LeftMenu: typeof import('./components/leftMenu/index.vue')['default']
     Pedestal: typeof import('./components/pedestal/index.vue')['default']
     RightPanel: typeof import('./components/rightPanel/index.vue')['default']
     RulerWrapper: typeof import('./components/sketchRuler/RulerWrapper.vue')['default']
     RulesLine: typeof import('./components/sketchRuler/RulesLine.vue')['default']
     SketchRuler: typeof import('./components/sketchRuler/index.vue')['default']
+    Test: typeof import('./components/leftMenu/Test.vue')['default']
   }
 }
 
