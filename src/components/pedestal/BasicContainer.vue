@@ -204,8 +204,6 @@ const initEditorRadio = () => {
       ) / 100
     sketchRulerStore.$patch({
       initScale: widthRadio,
-    })
-    sketchRulerStore.$patch({
       scale: widthRadio,
     })
     nextTick(() => {
@@ -237,18 +235,17 @@ const forbitWheel = (e: WheelEvent) => {
   }
 }
 
+onMounted(() => {
+  // 适配当前最合适的显示区域
+  initEditorRadio()
+  // 滚动到距离左边200的位置，方便放其他的菜单
+  screensRef.value!.scrollLeft =
+    containerRef.value!.getBoundingClientRect().width / 2 - 200
+})
 //  当按下ctrl + 0的时候，视图需要恢复原状
 useEventRegister(window, keydownRecoveryView, 'keydown')
 //  禁用浏览器的默认放大缩小事件
 useEventRegister(window, forbitWheel, 'wheel')
-
-onMounted(() => {
-  // 滚动到距离左边200的位置，方便放其他的菜单
-  screensRef.value!.scrollLeft =
-    containerRef.value!.getBoundingClientRect().width / 2 - 200
-  // 适配当前最合适的显示区域
-  initEditorRadio()
-})
 
 /**
  * 展示右侧面板

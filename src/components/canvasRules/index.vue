@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, Ref, ref, watch } from 'vue'
 import { IPaletteObj } from './canvasRulesType'
 import { drawCavaseRuler } from './utils'
 const props = defineProps<{
@@ -64,8 +64,10 @@ const emits = defineEmits<{
   (event: 'update:valueNum', valueNum: number): void
 }>()
 // 当前的状态
-const state = ref({
-  canvasContext: null as CanvasRenderingContext2D | null,
+const state: Ref<{
+  canvasContext: CanvasRenderingContext2D | null
+}> = ref({
+  canvasContext: null,
 })
 // 比列,默认是1
 let ratio = 1
@@ -82,8 +84,9 @@ onMounted(() => {
  * 初始化canvas
  */
 const initCanvasRef = () => {
-  state.value.canvasContext =
-    canvasRef.value && canvasRef.value.getContext('2d')
+  state.value.canvasContext = canvasRef.value
+    ? canvasRef.value.getContext('2d')
+    : null
 }
 /**
  *
