@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
@@ -42,6 +43,11 @@ export default defineConfig({
       'element-plus/es/components/config-provider/style/css',
       'element-plus/es/components/color-picker/style/css',
     ],
+  },
+  test: {
+    environment: 'jsdom',
+    include: ['src/components/**/*.test.ts'],
+    globals: true,
   },
   // build: {
   //   sourcemap: true,
