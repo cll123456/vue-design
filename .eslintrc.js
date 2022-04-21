@@ -19,6 +19,7 @@ module.exports = {
   parser: 'vue-eslint-parser',
   plugins: [],
   rules: {
+    'prettier/prettier': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
     'vue/v-on-event-hyphenation': 'error',

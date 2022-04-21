@@ -12,6 +12,12 @@ declare module '@vue/runtime-core' {
     ComLoadingError: typeof import('./components/comLoadingError/index.vue')['default']
     CompLoading: typeof import('./components/compLoading/index.vue')['default']
     CompMenus: typeof import('./components/leftMenu/CompMenus.vue')['default']
+    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+    ElEmpty: typeof import('element-plus/es')['ElEmpty']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     FlexBg: typeof import('./components/pedestal/FlexBg.vue')['default']
     GridBg: typeof import('./components/pedestal/GridBg.vue')['default']
@@ -21,6 +27,7 @@ declare module '@vue/runtime-core' {
     RulerWrapper: typeof import('./components/sketchRuler/RulerWrapper.vue')['default']
     RulesLine: typeof import('./components/sketchRuler/RulesLine.vue')['default']
     SketchRuler: typeof import('./components/sketchRuler/index.vue')['default']
+    TextComp: typeof import('./components/logicComps/commons/TextComp/index.vue')['default']
   }
 }
 
