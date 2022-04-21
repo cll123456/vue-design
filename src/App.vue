@@ -4,6 +4,7 @@ import { useRightPanelStore } from './store/rightPanel'
 import CompLoading from '@/components/compLoading/index.vue'
 import ComLoadingError from '@/components/ComLoadingError/index.vue'
 import LeftMenu from './components/leftMenu/index.vue'
+import TextComp from './components/logicComps/commons/TextComp/index.vue'
 const Comp = defineAsyncComponent({
   loader: () => import('@/components/comLoadingError/index.vue'),
   loadingComponent: CompLoading,
@@ -28,10 +29,11 @@ const clickDiv = () => {
       <pedestal>
         <p>1232</p>
         <span>sdfdfsf</span>
-        <div class="w-50 h-50 bg-success500" @click="clickDiv">
+        <div contenteditable class="w-50 h-50 bg-success500" @click="clickDiv">
           232
           <p>p3323</p>
         </div>
+        <TextComp></TextComp>
       </pedestal>
     </div>
   </div>
