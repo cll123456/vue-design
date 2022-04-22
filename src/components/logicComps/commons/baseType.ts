@@ -3,7 +3,7 @@ export interface IBaseType {
   /**
    * 基础字段
    */
-  base: Base
+  base: ICompBase
   /**
    * 组件名称
    */
@@ -76,7 +76,7 @@ interface Config {
   [key: string]: any
 }
 
-interface Base {
+export interface ICompBase {
   /**
    * 组件id
    */

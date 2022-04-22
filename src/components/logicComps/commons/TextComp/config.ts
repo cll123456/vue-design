@@ -2,7 +2,7 @@ import { IBaseType } from '../baseType'
 
 const textCompConfig: IBaseType = {
   base: {
-    id: '',
+    id: 'textComp',
     name: '文字',
     iconName: 'i-mdi-format-text',
   },

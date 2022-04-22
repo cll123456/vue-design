@@ -48,6 +48,9 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['src/components/**/*.test.ts'],
     globals: true,
+    deps: {
+      inline: ['element-plus'],
+    },
   },
   // build: {
   //   sourcemap: true,

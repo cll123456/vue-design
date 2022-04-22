@@ -21,6 +21,7 @@ export default defineConfig({
       'w-full overflow-y-auto overflow-x-hidden text-black-100 dark:text-white-100 bg-gray-100 dark:bg-gray-500 p-2 hyphens-auto',
     ],
   ],
+  safelist: ['i-mdi-format-text'],
   presets: [
     presetUno(),
     presetAttributify(),
