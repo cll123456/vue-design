@@ -6,6 +6,7 @@ const textCompConfig: IBaseType = {
     name: '文字',
     iconName: 'i-mdi-format-text',
   },
+  id: 'textComp',
   componentName: 'TextComp',
   compProps: {
     vModel: '双击编辑文字',

@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IBaseType {
   /**
+   * 配置的组件id
+   */
+  id: string
+  /**
    * 基础字段
    */
   base: ICompBase

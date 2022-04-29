@@ -13,6 +13,8 @@ declare module '@vue/runtime-core' {
     Commons: typeof import('./components/logicComps/commons/index.vue')['default']
     CompLoading: typeof import('./components/compLoading/index.vue')['default']
     CompMenus: typeof import('./components/leftMenu/CompMenus.vue')['default']
+    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElEmpty: typeof import('element-plus/es')['ElEmpty']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']

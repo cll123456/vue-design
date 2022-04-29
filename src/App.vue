@@ -5,6 +5,7 @@ import CompLoading from '@/components/compLoading/index.vue'
 import ComLoadingError from '@/components/ComLoadingError/index.vue'
 import LeftMenu from './components/leftMenu/index.vue'
 import TextComp from './components/logicComps/commons/TextComp/index.vue'
+
 const Comp = defineAsyncComponent({
   loader: () => import('@/components/comLoadingError/index.vue'),
   loadingComponent: CompLoading,

@@ -6,11 +6,15 @@ import { useRightPanelStore } from '@/store/rightPanel'
 import CompLoading from '@/components/compLoading/index.vue'
 import ComLoadingError from '@/components/ComLoadingError/index.vue'
 import { useEventRegister } from '@/hooks/useEventRegister'
+import { useDraggableComp } from '@/hooks/useDraggable'
+
 const BasicContainerRightPanel = defineAsyncComponent({
   loader: () => import('@/components/pedestal/BasicContainerRightPanel.vue'),
   loadingComponent: CompLoading,
   errorComponent: ComLoadingError,
 })
+
+const { handleDrop, handleDragOver } = useDraggableComp()
 
 const pedestalStore = usePedestalStore()
 
@@ -307,6 +311,8 @@ const closeRightPanel = (e: MouseEvent) => {
             class="abs-full origin-left-top"
             :style="{ transform: `scale(${sketchRulerStore.scale})` }"
             @click="showRightPanel"
+            @drop="handleDrop"
+            @dragover="handleDragOver"
           >
             <slot name="default"></slot>
           </div>

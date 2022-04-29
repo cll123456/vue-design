@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Ref } from 'vue'
 import { ICompBase } from './baseType'
+import { useDraggableComp } from '@/hooks/useDraggable'
+
 const props = defineProps({
   /**
    * 过滤字符串
@@ -32,6 +34,8 @@ const filterCompList = computed(() => {
     return item.name.includes(filterStr)
   })
 })
+
+const { handleDragStart } = useDraggableComp()
 </script>
 <template>
   <div class="w-full h-full">
@@ -39,10 +43,13 @@ const filterCompList = computed(() => {
       <div
         v-for="item in filterCompList"
         :key="item.id"
+        :data-compid="item.id"
+        :draggable="true"
         class="w-30% flex-c p-2 cursor-move flex-col select-none transition-all duration-300"
         border="1px solid lineColor"
         text="1.3em"
         hover="border-primary border-dashed"
+        @dragstart="handleDragStart"
       >
         <div :class="item.iconName"></div>
         <div>{{ item.name }}</div>
