@@ -1,4 +1,7 @@
+import { Component } from 'vue'
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
+type component = typeof import('vue')
 export interface IBaseType {
   /**
    * 配置的组件id
@@ -11,7 +14,7 @@ export interface IBaseType {
   /**
    * 组件名称
    */
-  componentName: string
+  component: string
   /**
    * 事件
    */
@@ -41,11 +44,7 @@ interface compProps {
   vModel: any
 }
 
-interface Styles {
-  /**
-   * 类名，unocss
-   */
-  classNames: string[]
+export interface Styles {
   /**
    * 宽度
    */
@@ -70,6 +69,29 @@ interface Styles {
    * 距离底部距离
    */
   bottom: string
+  /**
+   * 边框
+   */
+  borderWidth?: string
+  /**
+   * 内边距
+   */
+  letterSpacing?: string
+  /**
+   * 圆角
+   */
+  borderRadius?: string
+  /**
+   * 字体大小
+   */
+  fontSize?: string
+
+  /**
+   * 旋转角度
+   */
+  rotate: string
+
+  [key: string]: any
 }
 
 interface Config {

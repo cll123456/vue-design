@@ -56,9 +56,9 @@ const handleBlur = (e: Event) => {
   <div
     ref="textRef"
     :contenteditable="isEditor"
-    class="w-100 h-15 select-none outline-none overflow-ellipsis overflow-y-auto"
+    class="w-100 h-15 select-none p-x-5px p-y-10px outline-none overflow-x-hidden break-words overflow-y-auto"
     border="1px solid primary"
-    :tabindex="0"
+    :tabindex="1"
     @dblclick="changeText"
     @blur="handleBlur"
     @input="handleInput"

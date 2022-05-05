@@ -7,7 +7,7 @@ const textCompConfig: IBaseType = {
     iconName: 'i-mdi-format-text',
   },
   id: 'textComp',
-  componentName: 'TextComp',
+  component: 'TextComp',
   compProps: {
     vModel: '双击编辑文字',
   },
@@ -17,13 +17,14 @@ const textCompConfig: IBaseType = {
     isLock: false,
   },
   styles: {
-    classNames: [],
-    width: '',
-    height: '',
+    width: '500',
+    height: '100',
     top: '',
     left: '',
     right: '',
     bottom: '',
+    rotate: '0',
+    fontSize: '20',
   },
 }
 

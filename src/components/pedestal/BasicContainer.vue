@@ -7,6 +7,10 @@ import CompLoading from '@/components/compLoading/index.vue'
 import ComLoadingError from '@/components/ComLoadingError/index.vue'
 import { useEventRegister } from '@/hooks/useEventRegister'
 import { useDraggableComp } from '@/hooks/useDraggable'
+import { useCompConfigStore } from '@/store/compConfig'
+import compList from '../logicComps/compList'
+import { Styles } from '../logicComps/commons/baseType'
+import { getStyle } from '@/utils/styleUtils'
 
 const BasicContainerRightPanel = defineAsyncComponent({
   loader: () => import('@/components/pedestal/BasicContainerRightPanel.vue'),
@@ -22,6 +26,7 @@ const pagePedestalStore = computed(() => pedestalStore)
 
 const rightPanelStore = useRightPanelStore()
 
+const useCompConfig = useCompConfigStore()
 const props = defineProps({
   /**
    * 编辑器的宽度
@@ -273,6 +278,18 @@ const closeRightPanel = (e: MouseEvent) => {
     })
   }
 }
+
+const getComponentStyle = computed(() => (style: Styles) => {
+  return getStyle(style, [
+    'top',
+    'left',
+    'width',
+    'height',
+    'rotate',
+    'fontSize',
+    'padding',
+  ])
+})
 </script>
 <template>
   <!-- 容器 -->
@@ -314,6 +331,15 @@ const closeRightPanel = (e: MouseEvent) => {
             @drop="handleDrop"
             @dragover="handleDragOver"
           >
+            <template v-for="item in useCompConfig.getCompList" :key="item.id">
+              <component
+                :is="compList[item.component]"
+                :id="'component' + item.id"
+                :style="getComponentStyle(item.styles)"
+                class="absolute"
+                :cus-props="item"
+              />
+            </template>
             <slot name="default"></slot>
           </div>
         </div>
