@@ -1,10 +1,12 @@
+import { IBaseType } from '@/components/logicComps/commons/baseType'
 import logicCompJson from '@/components/logicComps/index'
 import { useCompConfigStore } from '@/store/compConfig'
 import generateID from '@/utils/genId'
 import { deepCopy } from '@/utils/objUtils'
-const compConfig = useCompConfigStore()
 
 export function useDraggableComp() {
+  const compConfig = useCompConfigStore()
+
   const handleDragStart = (e: DragEvent) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     e.dataTransfer?.setData('compid', (e.target as any)?.dataset.compid)
@@ -18,11 +20,13 @@ export function useDraggableComp() {
       .getElementById('myCanvasContainerId')
       ?.getBoundingClientRect()
     console.log(logicCompJson)
-    const component = deepCopy(logicCompJson.filter((f) => f.id === compid)[0])
+    const component = deepCopy(
+      logicCompJson.filter((f) => f.id === compid)[0],
+    ) as IBaseType
     if (e && basicContainer) {
-      component.config.top = e.clientY - basicContainer.y
-      component.config.left = e.clientX - basicContainer.x
-      component.id = generateID()
+      component.styles.top = (e.clientY - basicContainer.y).toString()
+      component.styles.left = (e.clientX - basicContainer.x).toString()
+      component.id = generateID().toString()
       compConfig.$patch({
         compList: [...compConfig.compList, component],
       })

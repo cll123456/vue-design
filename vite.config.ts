@@ -16,6 +16,7 @@ export default defineConfig({
       dirs: ['src/components'],
       extensions: ['vue'],
       resolvers: [ElementPlusResolver()],
+      include: [/\.vue$/],
       dts: './src/components.d.ts',
     }),
     // 自动引入库的api
