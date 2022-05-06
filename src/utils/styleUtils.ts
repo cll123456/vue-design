@@ -1,4 +1,5 @@
 import { Styles } from '@/components/logicComps/commons/baseType'
+import { typeObj } from '@/types/common'
 
 /**
  * 获取样式
@@ -18,8 +19,7 @@ export function getStyle(style: Styles, filter: Array<string>) {
     'borderRadius',
   ]
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const result: { [key: string]: any } = {}
+  const result: typeObj = {}
   Object.keys(style).forEach((key) => {
     if (filter.includes(key)) {
       if (key != 'rotate') {

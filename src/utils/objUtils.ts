@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-type typeObj = { [key: string]: any }
+import { typeObj } from '@/types/common'
 
 /**
  * 深度克隆

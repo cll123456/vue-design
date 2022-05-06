@@ -1,4 +1,6 @@
+/* eslint-disable  */
 import { DefineComponent } from 'vue'
 
-// eslint-disable-next-line
 export type myComponents = DefineComponent<{}, {}, any>
+
+export type typeObj = { [key: string]: any }
