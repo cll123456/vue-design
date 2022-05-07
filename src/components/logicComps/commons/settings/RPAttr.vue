@@ -6,7 +6,7 @@ const compConfigStore = useCompConfigStore()
  * 改变样式的属性，同步到仓库
  */
 const change = (e: Event, props: string) => {
-  compConfigStore.changeStyle({
+  compConfigStore.changeData('styles', {
     [props]: (e.target as HTMLInputElement).value,
   })
 }
@@ -15,10 +15,7 @@ const change = (e: Event, props: string) => {
   <div class="w-full">
     <span text-sm>X-坐标：</span>
     <input
-      class="w-[calc(100%-8em)] box-border py-1 px-1"
-      b="transparent 1px"
-      hover="border-1px border-lineColor rounded-sm"
-      focus-visible="outline-1px outline-success"
+      class="rp-input-number"
       type="number"
       :value="compConfigStore.curComp?.styles.left"
       min="0"
@@ -28,10 +25,7 @@ const change = (e: Event, props: string) => {
   <div class="w-full">
     <span text-sm>Y-坐标：</span>
     <input
-      class="w-[calc(100%-8em)] box-border py-1 px-1"
-      b="transparent 1px"
-      hover="border-1px border-lineColor rounded-sm"
-      focus-visible="outline-1px outline-success"
+      class="rp-input-number"
       type="number"
       :value="compConfigStore.curComp?.styles.top"
       min="0"
@@ -41,10 +35,7 @@ const change = (e: Event, props: string) => {
   <div class="w-full">
     <span text-sm>宽 度：</span>
     <input
-      class="w-[calc(100%-8em)] box-border py-1 px-1"
-      b="transparent 1px"
-      hover="border-1px border-lineColor rounded-sm"
-      focus-visible="outline-1px outline-success"
+      class="rp-input-number"
       type="number"
       :value="compConfigStore.curComp?.styles.width"
       min="0"
@@ -54,10 +45,7 @@ const change = (e: Event, props: string) => {
   <div class="w-full">
     <span text-sm>高 度：</span>
     <input
-      class="w-[calc(100%-8em)] box-border py-1 px-1"
-      b="transparent 1px"
-      hover="border-1px border-lineColor rounded-sm"
-      focus-visible="outline-1px outline-success"
+      class="rp-input-number"
       type="number"
       :value="compConfigStore.curComp?.styles.height"
       min="0"

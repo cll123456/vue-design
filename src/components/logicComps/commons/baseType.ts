@@ -1,7 +1,4 @@
-import { Component } from 'vue'
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type component = typeof import('vue')
 export interface IBaseType {
   /**
    * 配置的组件id
@@ -61,30 +58,6 @@ export interface Styles {
    * 距离左侧距离
    */
   left: string
-  /**
-   * 距离右侧距离
-   */
-  right: string
-  /**
-   * 距离底部距离
-   */
-  bottom: string
-  /**
-   * 边框
-   */
-  borderWidth?: string
-  /**
-   * 内边距
-   */
-  letterSpacing?: string
-  /**
-   * 圆角
-   */
-  borderRadius?: string
-  /**
-   * 字体大小
-   */
-  fontSize?: string
 
   /**
    * 旋转角度

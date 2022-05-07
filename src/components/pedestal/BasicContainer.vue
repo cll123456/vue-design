@@ -287,7 +287,8 @@ const getComponentStyle = computed(() => (style: Styles) => {
     'height',
     'rotate',
     'fontSize',
-    'padding',
+    'borderWidth',
+    'letterSpacing',
   ])
 })
 </script>

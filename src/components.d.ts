@@ -10,7 +10,6 @@ declare module '@vue/runtime-core' {
     BgArea: typeof import('./components/pedestal/BgArea.vue')['default']
     CanvasRules: typeof import('./components/canvasRules/index.vue')['default']
     ComLoadingError: typeof import('./components/comLoadingError/index.vue')['default']
-    CommonRightPanelHeader: typeof import('./components/rightPanel/commonRightPanelHeader.vue')['default']
     Commons: typeof import('./components/logicComps/commons/index.vue')['default']
     CompLoading: typeof import('./components/compLoading/index.vue')['default']
     CompMenus: typeof import('./components/leftMenu/CompMenus.vue')['default']
@@ -31,6 +30,7 @@ declare module '@vue/runtime-core' {
     RulesLine: typeof import('./components/sketchRuler/RulesLine.vue')['default']
     SketchRuler: typeof import('./components/sketchRuler/index.vue')['default']
     TextComp: typeof import('./components/logicComps/commons/TextComp/index.vue')['default']
+    TextCompRightPanel: typeof import('./components/logicComps/commons/TextComp/TextCompRightPanel.vue')['default']
   }
 }
 

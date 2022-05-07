@@ -1,14 +1,26 @@
 <script lang="ts" setup>
+import { useRightPanelStore } from '@/store/rightPanel'
 import { PropType, Ref } from 'vue'
 import { IBaseType } from '../baseType'
 import textCompConfig from './config'
+import CompLoading from '@/components/compLoading/index.vue'
+import ComLoadingError from '@/components/ComLoadingError/index.vue'
+import { useCompConfigStore } from '@/store/compConfig'
+const TextCompRightPanel = defineAsyncComponent({
+  loader: () => import('./TextCompRightPanel.vue'),
+  loadingComponent: CompLoading,
+  errorComponent: ComLoadingError,
+})
 
+const compConfigStore = useCompConfigStore()
 const props = defineProps({
   cusProps: {
     type: Object as PropType<IBaseType>,
     default: () => textCompConfig,
   },
 })
+
+const rightPanelStore = useRightPanelStore()
 
 const copyProps = ref(props)
 
@@ -51,6 +63,14 @@ const handleBlur = (e: Event) => {
   )?.innerHTML
   isEditor.value = false
 }
+
+const openRightPanel = () => {
+  rightPanelStore.$patch({
+    isShowRightPanel: true,
+  })
+  rightPanelStore.changeRightPanelComps(TextCompRightPanel)
+  compConfigStore.changeCurComp(props.cusProps)
+}
 </script>
 <template>
   <div
@@ -59,6 +79,7 @@ const handleBlur = (e: Event) => {
     class="w-100 h-15 select-none p-x-5px p-y-10px outline-none overflow-x-hidden break-words overflow-y-auto"
     border="1px solid primary"
     :tabindex="1"
+    @click="openRightPanel"
     @dblclick="changeText"
     @blur="handleBlur"
     @input="handleInput"

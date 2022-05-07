@@ -28,13 +28,13 @@ const clickDiv = () => {
     </div>
     <div class="w-[calc(100%-46px)] h-full relative">
       <pedestal>
-        <p>1232</p>
+        <!-- <p>1232</p>
         <span>sdfdfsf</span>
         <div contenteditable class="w-50 h-50 bg-success500" @click="clickDiv">
           232
           <p>p3323</p>
         </div>
-        <TextComp></TextComp>
+        <TextComp></TextComp> -->
       </pedestal>
     </div>
   </div>

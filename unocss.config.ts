@@ -14,6 +14,10 @@ export default defineConfig({
       'icon-style',
       'cursor-pointer transition-all ease-linear duration-50 hover:color-slate500 active:color-slate900',
     ],
+    [
+      'rp-input-number',
+      'w-[calc(100%-8em)] box-border py-1 px-1 border-1px border-transparent hover:border-1px hover:border-lineColor hover:rounded-sm focus-visible:outline-1px focus-visible:outline-primary',
+    ],
     ['line-style', 'h-1px w-full bg-lineColor'],
     ['abs-full', 'absolute w-full h-full'],
     [
