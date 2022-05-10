@@ -15,15 +15,17 @@ const leftMenuStore = useLeftMenuPanelStore()
 useEventRegister(
   window,
   (e: Event) => {
-    const targetParentCls = (e.target as HTMLDivElement).parentElement!
-      .classList
-    if (
-      !targetParentCls.contains('sys-left-menu--containers') &&
-      !leftMenuStore.getStateProps.isLock
-    ) {
-      leftMenuStore.$patch({
-        hasShowPanel: false,
-      })
+    const targetParent = (e.target as HTMLDivElement).parentElement
+    if (targetParent) {
+      const targetParentCls = targetParent!.classList
+      if (
+        !targetParentCls.contains('sys-left-menu--containers') &&
+        !leftMenuStore.getStateProps.isLock
+      ) {
+        leftMenuStore.$patch({
+          hasShowPanel: false,
+        })
+      }
     }
   },
   'click',
