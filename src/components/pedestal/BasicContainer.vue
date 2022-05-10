@@ -27,6 +27,7 @@ const pagePedestalStore = computed(() => pedestalStore)
 const rightPanelStore = useRightPanelStore()
 
 const useCompConfig = useCompConfigStore()
+
 const props = defineProps({
   /**
    * 编辑器的宽度
@@ -261,25 +262,31 @@ useEventRegister(window, forbitWheel, 'wheel')
  */
 const showRightPanel = (e: MouseEvent) => {
   const myCanvasContainerDom = document.getElementById('myCanvasContainerId')
+  const rightPanelDom = document.getElementById('sys-rightPanel')
   if (e.target === myCanvasContainerDom) {
     rightPanelStore.$patch({
       isShowRightPanel: true,
     })
     rightPanelStore.changeRightPanelComps(BasicContainerRightPanel)
-  }
-}
-/**
- * 关闭右侧面板
- */
-const closeRightPanel = (e: MouseEvent) => {
-  if (e.target === containerRef.value) {
+    useCompConfig.changeCurComp(undefined)
+  } else if (
+    myCanvasContainerDom?.contains(e.target as Node) ||
+    rightPanelDom?.contains(e.target as Node)
+  ) {
+    // todo anything
+  } else {
     rightPanelStore.$patch({
       isShowRightPanel: false,
     })
+    useCompConfig.changeCurComp(undefined)
   }
 }
 
-const getComponentStyle = computed(() => (style: Styles) => {
+useEventRegister(window, showRightPanel, 'click')
+/**
+ * 获取组件的style
+ */
+const getComponentStyle = (style: Styles) => {
   return getStyle(style, [
     'top',
     'left',
@@ -290,7 +297,7 @@ const getComponentStyle = computed(() => (style: Styles) => {
     'borderWidth',
     'letterSpacing',
   ])
-})
+}
 </script>
 <template>
   <!-- 容器 -->
@@ -302,11 +309,7 @@ const getComponentStyle = computed(() => (style: Styles) => {
     @wheel="handleWheel"
     @scroll="handleScroll"
   >
-    <div
-      ref="containerRef"
-      class="absolute w-5000px h-3000px"
-      @click="closeRightPanel"
-    >
+    <div ref="containerRef" class="absolute w-5000px h-3000px">
       <div
         id="myCanvas"
         class="absolute top-80px left-50% bg-lightblue z-1 origin-top-left"
@@ -332,15 +335,19 @@ const getComponentStyle = computed(() => (style: Styles) => {
             @drop="handleDrop"
             @dragover="handleDragOver"
           >
-            <template v-for="item in useCompConfig.getCompList" :key="item.id">
+            <Shape
+              v-for="item in useCompConfig.getCompList"
+              :key="item.id"
+              :style="getComponentStyle(item.styles)"
+              :cur-props="item"
+            >
               <component
                 :is="compList[item.component]"
                 :id="'component' + item.id"
                 :style="getComponentStyle(item.styles)"
-                class="absolute"
-                :cus-props="item"
+                :cur-props="item"
               />
-            </template>
+            </Shape>
             <slot name="default"></slot>
           </div>
         </div>

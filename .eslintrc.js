@@ -23,5 +23,11 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
     'vue/v-on-event-hyphenation': 'error',
+    'vue/multi-word-component-names': [
+      'warn',
+      {
+        ignores: [],
+      },
+    ],
   },
 }

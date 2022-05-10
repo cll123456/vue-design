@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     RPAttr: typeof import('./components/logicComps/commons/settings/RPAttr.vue')['default']
     RulerWrapper: typeof import('./components/sketchRuler/RulerWrapper.vue')['default']
     RulesLine: typeof import('./components/sketchRuler/RulesLine.vue')['default']
+    Shape: typeof import('./components/shape/index.vue')['default']
     SketchRuler: typeof import('./components/sketchRuler/index.vue')['default']
     TextComp: typeof import('./components/logicComps/commons/TextComp/index.vue')['default']
     TextCompRightPanel: typeof import('./components/logicComps/commons/TextComp/TextCompRightPanel.vue')['default']

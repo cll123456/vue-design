@@ -140,6 +140,16 @@ const changeCompProps = (e: Event, props: string) => {
                 />
               </div>
               <div class="w-full flex items-center h-32px">
+                <span text-sm>字透明度：</span>
+                <input
+                  class="rp-input-number"
+                  type="number"
+                  :value="compConfigStore.curComp?.styles.opacity"
+                  min="0"
+                  @change="change($event, 'opacity')"
+                />
+              </div>
+              <div class="w-full flex items-center h-32px">
                 <span text-sm>对齐方式：</span>
                 <div class="display-inline m-l-5px">
                   <i
@@ -253,6 +263,7 @@ const changeCompProps = (e: Event, props: string) => {
 .right-panel--container {
   width: 100%;
   height: 100%;
+
   :deep(.el-tabs__nav-scroll) {
     margin-left: 20px;
   }

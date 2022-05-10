@@ -12,13 +12,13 @@ const TextCompRightPanel = defineAsyncComponent({
   errorComponent: ComLoadingError,
 })
 
-const compConfigStore = useCompConfigStore()
 const props = defineProps({
-  cusProps: {
+  curProps: {
     type: Object as PropType<IBaseType>,
     default: () => textCompConfig,
   },
 })
+const compConfigStore = useCompConfigStore()
 
 const rightPanelStore = useRightPanelStore()
 
@@ -30,7 +30,7 @@ const textRef: Ref<HTMLDivElement | null> = ref(null)
  * 修改文字
  */
 const changeText = () => {
-  if (props.cusProps.config.isLock) return
+  if (props.curProps.config.isLock) return
   if (textRef.value) {
     selectText(textRef.value)
   }
@@ -50,7 +50,7 @@ const selectText = (element: HTMLDivElement) => {
  * 输入值
  */
 const handleInput = (e: Event) => {
-  copyProps.value.cusProps.compProps.vModel = (
+  copyProps.value.curProps.compProps.vModel = (
     e.target as HTMLDivElement
   )?.innerHTML
 }
@@ -58,7 +58,7 @@ const handleInput = (e: Event) => {
  * 失焦 不能编辑
  */
 const handleBlur = (e: Event) => {
-  copyProps.value.cusProps.compProps.vModel = (
+  copyProps.value.curProps.compProps.vModel = (
     e.target as HTMLDivElement
   )?.innerHTML
   isEditor.value = false
@@ -69,7 +69,7 @@ const openRightPanel = () => {
     isShowRightPanel: true,
   })
   rightPanelStore.changeRightPanelComps(TextCompRightPanel)
-  compConfigStore.changeCurComp(props.cusProps)
+  compConfigStore.changeCurComp(props.curProps)
 }
 </script>
 <template>
@@ -84,7 +84,7 @@ const openRightPanel = () => {
     @blur="handleBlur"
     @input="handleInput"
   >
-    {{ copyProps.cusProps.compProps.vModel }}
+    {{ copyProps.curProps.compProps.vModel }}
   </div>
 </template>
 
