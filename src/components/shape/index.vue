@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useCompConfigStore } from '@/store/compConfig'
+import { useSketchRulerStore } from '@/store/sketchRuler'
 import { typeObj } from '@/types/common'
 import { directionType } from '@/types/styleType'
 import { calcMoveStyle } from '@/utils/styleUtils'
@@ -21,6 +22,8 @@ const props = defineProps({
 })
 
 const compConfigStore = useCompConfigStore()
+
+const sketchRulerStore = useSketchRulerStore()
 
 const copyStyle = ref({
   width: props.style.width,
@@ -54,6 +57,7 @@ const isLock = computed(() => props.curProps.config.lock)
 const isActive = computed(
   () => compConfigStore.curComp?.id === props.curProps.id,
 )
+
 /**
  * 移动组件
  */
@@ -72,16 +76,32 @@ const moveComp = (e: MouseEvent) => {
   let isMove = false
   let tRes = 0,
     lRes = 0
+
   const move = (mouseEvent: MouseEvent) => {
     isMove = true
     const curX = mouseEvent.clientX
     const curY = mouseEvent.clientY
+
     tRes = curY - startY + startTop
     lRes = curX - startX + startLeft
+    // 判断是否出界 上 左 下 右
+    if (tRes <= 0) {
+      tRes = 0
+    }
+    if (lRes <= 0) {
+      lRes = 0
+    }
+
+    if (tRes + parseFloat(copyStyle.value.height) >= sketchRulerStore.height) {
+      tRes = sketchRulerStore.height - parseFloat(copyStyle.value.height)
+    }
+    if (lRes + parseFloat(copyStyle.value.width) >= sketchRulerStore.width) {
+      lRes = sketchRulerStore.width - parseFloat(copyStyle.value.width)
+    }
     copyStyle.value.top = tRes + 'px'
     copyStyle.value.left = lRes + 'px'
   }
-  const up = (mouseEvent: MouseEvent) => {
+  const up = () => {
     if (isMove) {
       compConfigStore.changeData('styles', {
         top: tRes.toString(),
@@ -182,12 +202,6 @@ const handleMouseDownOnPoint = (e: MouseEvent, item: directionType) => {
   const height = parseFloat(copyStyle.value.height)
   const left = parseFloat(copyStyle.value.left)
   const top = parseFloat(copyStyle.value.top)
-
-  // 组件中心点
-  const center = {
-    x: left + width / 2,
-    y: top + height / 2,
-  }
   let isMove = false
   // 获取 point 与实际拖动基准点的差值
   const pointRect = (e.target as HTMLDivElement)?.getBoundingClientRect()
@@ -213,6 +227,7 @@ const handleMouseDownOnPoint = (e: MouseEvent, item: directionType) => {
         top: top,
       },
       { x: desX, y: desY },
+      { width: sketchRulerStore.width, height: sketchRulerStore.height },
     )
     copyStyle.value.width = resStyle.width + 'px'
     copyStyle.value.height = resStyle.height + 'px'

@@ -39,7 +39,14 @@ export function getStyle(style: Styles, filter: Array<string>) {
 
   return result
 }
-
+/**
+ * 计算拖拽的样式
+ * @param direction
+ * @param curPos
+ * @param destPos
+ * @param containerInfo
+ * @returns
+ */
 export function calcMoveStyle(
   direction: directionType,
   curPos: {
@@ -51,6 +58,7 @@ export function calcMoveStyle(
     left: number
   },
   destPos: { x: number; y: number },
+  containerInfo: { width: number; height: number },
 ) {
   let resHeight = curPos.height,
     resTop = curPos.top,
@@ -72,11 +80,21 @@ export function calcMoveStyle(
         // 向上移动
         resHeight = curPos.height - moveY
         resTop = curPos.top + moveY
+        // 判断是否到顶
+        if (resTop < 0) {
+          resTop = 0
+          resHeight = curPos.height + curPos.top
+        }
       }
       break
     case 'bottom':
       const moveY2 = destPos.y - curPos.y
       resHeight = curPos.height + moveY2
+      if (resHeight <= 20) {
+        resHeight = 20
+      } else if (resHeight + resTop >= containerInfo.height) {
+        resHeight = containerInfo.height - resTop
+      }
       break
     case 'left':
       const moveX = destPos.x - curPos.x
@@ -91,11 +109,22 @@ export function calcMoveStyle(
         // 向左移动
         resWidth = curPos.width - moveX
         resLeft = curPos.left + moveX
+        // 判断是否到了边界
+        if (resLeft < 0) {
+          resLeft = 0
+          resWidth = curPos.width + curPos.left
+        }
       }
       break
     case 'right':
       const moveX2 = destPos.x - curPos.x
       resWidth = curPos.width + moveX2
+      // 组件最新是20px
+      if (resWidth <= 20) {
+        resWidth = 20
+      } else if (resWidth + resLeft >= containerInfo.width) {
+        resWidth = containerInfo.width - resLeft
+      }
       break
     case 'left-top':
       const moveX3 = destPos.x - curPos.x
@@ -113,6 +142,15 @@ export function calcMoveStyle(
         resHeight = curPos.height - moveY3
         resLeft = curPos.left + moveX3
         resTop = curPos.top + moveY3
+        // 需要判断是否到达左边和顶部
+        if (resLeft < 0) {
+          resLeft = 0
+          resWidth = curPos.width + curPos.left
+        }
+        if (resTop < 0) {
+          resTop = 0
+          resHeight = curPos.height + curPos.top
+        }
       }
       break
     case 'right-top':
@@ -128,6 +166,14 @@ export function calcMoveStyle(
         resWidth = curPos.width + moveX4
         resHeight = curPos.height - moveY4
         resTop = curPos.top + moveY4
+        // 是否到达顶部，右边
+        if (resWidth + resLeft >= containerInfo.width) {
+          resWidth = containerInfo.width - resLeft
+        }
+        if (resTop < 0) {
+          resTop = 0
+          resHeight = curPos.height + curPos.top
+        }
       }
       break
     case 'left-bottom':
@@ -138,11 +184,19 @@ export function calcMoveStyle(
         resWidth = curPos.width - moveX5
         resLeft = curPos.left + moveX5
         resHeight = curPos.height + moveY5
+        // 判断是否到了底部，左边
+        if (resHeight + resTop >= containerInfo.height) {
+          resHeight = containerInfo.height - resTop
+        }
+        if (resLeft < 0) {
+          resLeft = 0
+          resWidth = curPos.width + curPos.left
+        }
       } else {
         // 斜向上移动, 缩小组件
         resWidth = curPos.width - moveX5 <= 20 ? 20 : curPos.width - moveX5
         resLeft = curPos.left + moveX5
-        resHeight = curPos.height + moveY5
+        resHeight = curPos.height + moveY5 <= 20 ? 20 : curPos.height + moveY5
       }
       break
     case 'right-bottom':
@@ -152,6 +206,13 @@ export function calcMoveStyle(
         // 斜向下移动, 放大组件
         resWidth = curPos.width + moveX6
         resHeight = curPos.height + moveY6
+        // 判断是否到了右边，底部
+        if (resWidth + resLeft >= containerInfo.width) {
+          resWidth = containerInfo.width - resLeft
+        }
+        if (resHeight + resTop >= containerInfo.height) {
+          resHeight = containerInfo.height - resTop
+        }
       } else {
         // 斜向上移动, 缩小组件
         resHeight = curPos.height + moveY6 <= 20 ? 20 : curPos.height + moveY6
