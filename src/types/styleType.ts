@@ -13,3 +13,16 @@ export type TAlignType = 'left' | 'center' | 'right'
  * border-style: dotted
  */
 export type TBorderStyle = 'none' | 'solid' | 'dashed' | 'dotted'
+
+/**
+ * 样式的鼠标方向值
+ */
+export type directionType =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'left-top'
+  | 'right-top'
+  | 'left-bottom'
+  | 'right-bottom'
