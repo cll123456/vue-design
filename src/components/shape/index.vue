@@ -263,12 +263,12 @@ const handleMouseDownOnPoint = (e: MouseEvent, item: directionType) => {
     :style="copyStyle"
     @mousedown="moveComp"
   >
-    <div
+    <!-- <div
       v-show="isActive && !isLock"
       class="i-mdi:restore absolute left-50% top--40px transition color-primary -translate-x-50% text-xl"
       active="cursor-grabbing"
       hover="cursor-grabbing"
-    ></div>
+    ></div> -->
     <!-- 锁定组件 -->
     <div
       v-show="isActive"
