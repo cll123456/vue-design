@@ -41,10 +41,10 @@ export function getStyle(style: Styles, filter: Array<string>) {
 }
 /**
  * 计算拖拽的样式
- * @param direction
- * @param curPos
- * @param destPos
- * @param containerInfo
+ * @param direction {directionType} 拖拽时候的方向
+ * @param curPos 当前位置
+ * @param destPos 目标位置
+ * @param containerInfo 容器信息
  * @returns
  */
 export function calcMoveStyle(

@@ -49,6 +49,9 @@ export const useCompConfigStore = defineStore<
       curComp: undefined,
     }
   },
+  undo: {
+    omit: ['curComp'],
+  },
   getters: {
     /**
      * 获取组件列表
