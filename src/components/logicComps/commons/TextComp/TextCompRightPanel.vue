@@ -32,8 +32,6 @@ const predefineColors = ref([
   '#c71585',
 ])
 
-const color = ref('#f40')
-
 /**
  * 改变样式
  */

@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-import { ref } from 'vue'
-</script>
+<script lang="ts" setup></script>
 <template>
   <div class="flex-c h-full">
     <svg viewBox="25 25 50 50" class="circular">

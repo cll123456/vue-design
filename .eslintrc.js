@@ -22,11 +22,12 @@ module.exports = {
     'prettier/prettier': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'vue/v-on-event-hyphenation': 'error',
     'vue/multi-word-component-names': [
       'warn',
       {
-        ignores: [],
+        ignores: ['index'],
       },
     ],
   },

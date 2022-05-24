@@ -3,7 +3,7 @@ import CommonMenuComp from './index.vue'
 import { mount } from '@vue/test-utils'
 
 function delay(time: number) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(1)
     }, time)

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useCompConfigStore } from '@/store/compConfig'
 import { useSketchRulerStore } from '@/store/sketchRuler'
-import { typeObj } from '@/types/common'
 import { directionType } from '@/types/styleType'
 import { calcMoveStyle } from '@/utils/styleUtils'
 import { PropType, ref } from 'vue'

@@ -1,24 +1,6 @@
 <script setup lang="ts">
 import Pedestal from './components/pedestal/index.vue'
-import { useRightPanelStore } from './store/rightPanel'
-import CompLoading from '@/components/compLoading/index.vue'
-import ComLoadingError from '@/components/ComLoadingError/index.vue'
 import LeftMenu from './components/leftMenu/index.vue'
-import TextComp from './components/logicComps/commons/TextComp/index.vue'
-
-const Comp = defineAsyncComponent({
-  loader: () => import('@/components/comLoadingError/index.vue'),
-  loadingComponent: CompLoading,
-  errorComponent: ComLoadingError,
-})
-
-const rightPanelStore = useRightPanelStore()
-const clickDiv = () => {
-  rightPanelStore.$patch({
-    isShowRightPanel: true,
-  })
-  rightPanelStore.changeRightPanelComps(Comp)
-}
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import { assert, describe, expect, test } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import TextComp from './index.vue'
 import { mount } from '@vue/test-utils'
 
